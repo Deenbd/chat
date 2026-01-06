@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deen Chat</title>
+<link href="logo2.png" rel="icon" />
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --bg-main: #e5ddd5;
+  --bg-chat: #fff;
+  --bg-user: #dcf8c6;
+  --bg-other: #ffffff;
+  --text-main: #000;
+  --text-time: #667781;
+  --border: #e9edef;
+  --input-bg: #f0f2f5;
+  --header-bg: #008069;
+  --sidebar-bg: #fff;
+  --hover-bg: #f5f6f6;
+}
+
+[data-theme="dark"] {
+  --bg-main: #0b141a;
+  --bg-chat: #111b21;
+  --bg-user: #005c4b;
+  --bg-other: #202c33;
+  --text-main: #e9edef;
+  --text-time: #8696a0;
+  --border: #2a3942;
+  --input-bg: #2a3942;
+  --header-bg: #202c33;
+  --sidebar-bg: #111b21;
+  --hover-bg: #202c33;
+}
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-main);
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  transition: background 0.3s;
+  overflow: hidden;
+}
+
+#header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  z-index: 10;
+}
+
+#header h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.user-badge {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.user-badge:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.admin-badge {
+  background: #ff9800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.new-chat-btn {
+  background: #25d366;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.new-chat-btn:hover {
+  background: #20bd5a;
+}
+
+#theme-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+#theme-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 350px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 15px;
+  background: var(--header-bg);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.contact-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.contact-item {
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-item:hover {
+  background: var(--hover-bg);
+}
+
+.contact-item.active {
+  background: var(--bg-user);
+}
+
+.contact-name {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 15px;
+}
+
+.contact-device {
+  font-size: 11px;
+  color: var(--text-time);
+  margin-top: 2px;
+}
+
+.online-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.online-status.online {
+  background: #25d366;
+  box-shadow: 0 0 5px #25d366;
+}
+
+.online-status.offline {
+  background: #8696a0;
+}
+
+.contact-serial {
+  color: #06cf9c;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Chat area */
+#chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#box{
+  flex:1;
+  overflow-y:auto;
+  padding: 20px 8% 20px;
+  background: var(--bg-main);
+}
+
+.msg-wrapper {
+  display: flex;
+  margin-bottom: 8px;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-wrapper.user {
+  justify-content: flex-end;
+}
+
+.msg-wrapper.other {
+  justify-content: flex-start;
+}
+
+.c {
+  background: var(--bg-other);
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 65%;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  position: relative;
+}
+
+.msg-wrapper.user .c {
+  background: var(--bg-user);
+  border-radius: 8px 8px 0 8px;
+}
+
+.msg-wrapper.other .c {
+  border-radius: 8px 8px 8px 0;
+}
+
+.n {
+  font-weight: 600;
+  color: #06cf9c;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.msg-wrapper.user .n {
+  color: #025144;
+}
+
+.m {
+  line-height: 1.4;
+  color: var(--text-main);
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.t {
+  font-size: 11px;
+  color: var(--text-time);
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+.inp {
+  background: var(--bg-chat);
+  padding: 10px 8%;
+  box-shadow: 0 -2px 10px rgba(0,0,0,.1);
+}
+
+.r {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.name-setup {
+  background: var(--bg-user);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 2px solid var(--header-bg);
+}
+
+.name-setup p {
+  color: var(--text-main);
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.name-setup input {
+  margin-bottom: 10px;
+}
+
+.name-setup button {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.name-setup button:hover {
+  background: #06cf9c;
+}
+
+input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.send-btn {
+  background: #00a884;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.send-btn:hover {
+  background: #06cf9c;
+}
+
+#loading {
+  text-align: center;
+  color: var(--text-time);
+  padding: 20px;
+  font-size: 14px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-time);
+  font-size: 15px;
+}
+
+.empty-state-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  #sidebar {
+    width: 100%;
+    position: absolute;
+    height: calc(100vh - 60px);
+    z-index: 5;
+  }
+  
+  #sidebar.hidden-mobile {
+    display: none;
+  }
+  
+  #chat-area.hidden-mobile {
+    display: none;
+  }
+  
+  .back-btn {
+    display: block !important;
+  }
+}
+
+.back-btn {
+  display: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="header">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <button class="back-btn" onclick="showSidebar()">← Back</button>
+    <h3>💬 Deen Chat</h3>
+  </div>
+  <div class="header-right">
+    <button class="new-chat-btn" onclick="startNewChat()">➕ New Chat</button>
+    <span class="user-badge" id="user-badge" style="display:none" onclick="changeName()" title="Click to change name"></span>
+    <span class="admin-badge" id="admin-badge" style="display:none">ADMIN</span>
+    <button id="theme-btn" onclick="toggleTheme()">🌙 Dark</button>
+  </div>
+</div>
+
+<div class="main-container">
+  <div id="sidebar" class="hidden">
+    <div class="sidebar-header">💬 Chats</div>
+    <div class="contact-list" id="contact-list">
+      <div id="loading">Loading contacts...</div>
+    </div>
+  </div>
+
+  <div id="chat-area">
+    <div id="box">
+      <div id="loading">Loading messages...</div>
+    </div>
+
+    <div class="inp">
+      <div id="name-setup" class="name-setup hidden">
+        <p>👋 Welcome! Please enter your name to start chatting:</p>
+        <input id="setup-name" placeholder="Your name" autocomplete="off">
+        <button onclick="saveName()">Continue</button>
+      </div>
+
+      <div id="chat-input" class="hidden">
+        <div class="r">
+          <input id="m" placeholder="Type a message" autocomplete="off">
+          <button class="send-btn" onclick="send()" title="Send">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const URL = 'https://script.google.com/macros/s/AKfycbwBElECjNuxVJHj_cpODhrp8OXzMGqhlAD5zzxD7wo7eUriEPn2eKirodRo-DjmoLAJ/exec';
+
+const ADMIN_DEVICES = [
+  'dev_1767677115148_nbxfegur4',
+];
+
+let deviceId = '';
+let userName = '';
+let serialId = '';
+let isAdmin = false;
+let allMessages = [];
+let selectedContact = null;
+let isSending = false;
+let onlineUsers = {};
+let userContacts = {};
+
+function getDeviceId() {
+  let id = localStorage.getItem('chatDeviceId');
+  if (!id) {
+    id = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('chatDeviceId', id);
+  }
+  return id;
+}
+
+function getSerialId() {
+  let id = localStorage.getItem('chatSerialId');
+  if (!id) {
+    id = Math.floor(1000 + Math.random() * 9000).toString();
+    localStorage.setItem('chatSerialId', id);
+  }
+  return id;
+}
+
+function checkAdmin() {
+  return ADMIN_DEVICES.includes(deviceId);
+}
+
+function getSavedName() {
+  return localStorage.getItem('chatUserName') || '';
+}
+
+function saveName() {
+  const name = document.getElementById('setup-name').value.trim();
+  if (!name) {
+    alert('⚠️ Please enter your name');
+    return;
+  }
+  
+  userName = name;
+  localStorage.setItem('chatUserName', name);
+  
+  document.getElementById('name-setup').classList.add('hidden');
+  document.getElementById('chat-input').classList.remove('hidden');
+  updateUserBadge();
+  
+  document.getElementById('m').focus();
+  sendHeartbeat();
+  registerUser();
+  loadMessages();
+}
+
+function registerUser() {
+  fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      register: true,
+      deviceId: deviceId,
+      serialId: serialId,
+      name: userName
+    })
+  }).catch(err => console.error('Register error:', err));
+}
+
+function updateUserBadge() {
+  document.getElementById('user-badge').textContent = `👤 ${userName} #${serialId}`;
+  document.getElementById('user-badge').style.display = 'block';
+}
+
+function changeName() {
+  const newName = prompt('Enter new name:', userName);
+  if (newName && newName.trim()) {
+    userName = newName.trim();
+    localStorage.setItem('chatUserName', userName);
+    updateUserBadge();
+    sendHeartbeat();
+    registerUser();
+    alert('✅ Name changed successfully!');
+  }
+}
+
+function startNewChat() {
+  const targetSerial = prompt('Enter Serial ID (4 digits) to start chat:');
+  if (!targetSerial) return;
+  
+  if (!/^\d{4}$/.test(targetSerial)) {
+    alert('⚠️ Please enter a valid 4-digit Serial ID');
+    return;
+  }
+  
+  if (targetSerial === serialId) {
+    alert('⚠️ You cannot chat with yourself!');
+    return;
+  }
+  
+  if (!userContacts[targetSerial]) {
+    userContacts[targetSerial] = {
+      serialId: targetSerial,
+      name: 'User #' + targetSerial
+    };
+    localStorage.setItem('chatContacts', JSON.stringify(userContacts));
+  }
+  
+  if (!isAdmin) {
+    document.getElementById('sidebar').classList.remove('hidden');
+  }
+  
+  selectContact(targetSerial, 'user');
+  loadMessages(true);
+}
+
+function initUser() {
+  deviceId = getDeviceId();
+  serialId = getSerialId();
+  userName = getSavedName();
+  isAdmin = checkAdmin();
+  
+  const savedContacts = localStorage.getItem('chatContacts');
+  if (savedContacts) {
+    try {
+      userContacts = JSON.parse(savedContacts);
+    } catch (e) {
+      userContacts = {};
+    }
+  }
+  
+  if (isAdmin) {
+    document.getElementById('admin-badge').style.display = 'block';
+    document.getElementById('sidebar').classList.remove('hidden');
+  } else if (Object.keys(userContacts).length > 0) {
+    document.getElementById('sidebar').classList.remove('hidden');
+  }
+  
+  if (!userName) {
+    document.getElementById('name-setup').classList.remove('hidden');
+    document.getElementById('chat-input').classList.add('hidden');
+    document.getElementById('setup-name').focus();
+  } else {
+    document.getElementById('name-setup').classList.add('hidden');
+    document.getElementById('chat-input').classList.remove('hidden');
+    updateUserBadge();
+  }
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-btn');
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  
+  if (isDark) {
+    html.removeAttribute('data-theme');
+    btn.textContent = '🌙 Dark';
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️ Light';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.getElementById('theme-btn').textContent = '☀️ Light';
+}
+
+function loadMessages(auto = false) {
+  fetch(URL + '?deviceId=' + deviceId + '&serialId=' + serialId + '&t=' + Date.now())
+    .then(r => {
+      if (!r.ok) throw new Error('Network response was not ok');
+      return r.json();
+    })
+    .then(d => {
+      if (!d || !d.comments || !Array.isArray(d.comments)) {
+        allMessages = [];
+        updateContactList();
+        if (!selectedContact) {
+          box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chatting!</div>';
+        }
+        return;
+      }
+      
+      allMessages = d.comments;
+      
+      if (d.onlineUsers) {
+        onlineUsers = d.onlineUsers;
+      }
+      
+      allMessages.forEach(msg => {
+        if (msg.targetSerial && msg.targetSerial !== serialId && msg.serialId !== serialId) {
+        } else if (msg.serialId && msg.serialId !== serialId && userContacts[msg.serialId]) {
+          userContacts[msg.serialId].name = msg.name;
+        }
+      });
+      localStorage.setItem('chatContacts', JSON.stringify(userContacts));
+      
+      updateContactList();
+      
+      if (selectedContact) {
+        displayChat(selectedContact.id, selectedContact.type);
+      } else if (!isAdmin && Object.keys(userContacts).length === 0) {
+        selectContact('admin', 'admin');
+      }
+    })
+    .catch(err => {
+      console.error('Load error:', err);
+      box.innerHTML = '<div id="loading">❌ Failed to load. Click refresh.</div>';
+    });
+}
+
+function updateContactList() {
+  const contactList = document.getElementById('contact-list');
+  const contacts = [];
+  
+  if (isAdmin) {
+    const userDevices = {};
+    allMessages.forEach(msg => {
+      if (!ADMIN_DEVICES.includes(msg.deviceId) && msg.serialId) {
+        if (!userDevices[msg.serialId]) {
+          userDevices[msg.serialId] = {
+            id: msg.serialId,
+            type: 'user',
+            serialId: msg.serialId,
+            name: msg.name,
+            lastMessage: msg.message,
+            timestamp: msg.timestamp
+          };
+        } else {
+          if (new Date(msg.timestamp) > new Date(userDevices[msg.serialId].timestamp)) {
+            userDevices[msg.serialId].lastMessage = msg.message;
+            userDevices[msg.serialId].timestamp = msg.timestamp;
+          }
+        }
+      }
+    });
+    contacts.push(...Object.values(userDevices));
+  } else {
+    const adminMessages = allMessages.filter(m => 
+      (ADMIN_DEVICES.includes(m.deviceId) || m.deviceId === deviceId) &&
+      (!m.targetSerial || m.targetSerial === 'admin')
+    );
+    
+    const lastAdminMsg = adminMessages[adminMessages.length - 1];
+    contacts.push({
+      id: 'admin',
+      type: 'admin',
+      name: 'Admin Support',
+      lastMessage: lastAdminMsg ? lastAdminMsg.message : 'Start chatting',
+      timestamp: lastAdminMsg ? lastAdminMsg.timestamp : new Date().toISOString()
+    });
+    
+    Object.keys(userContacts).forEach(serial => {
+      const privateMessages = allMessages.filter(m =>
+        (m.serialId === serialId && m.targetSerial === serial) ||
+        (m.serialId === serial && m.targetSerial === serialId)
+      );
+      
+      if (privateMessages.length > 0) {
+        const lastMsg = privateMessages[privateMessages.length - 1];
+        contacts.push({
+          id: serial,
+          type: 'user',
+          serialId: serial,
+          name: userContacts[serial].name,
+          lastMessage: lastMsg.message,
+          timestamp: lastMsg.timestamp
+        });
+      } else {
+        contacts.push({
+          id: serial,
+          type: 'user',
+          serialId: serial,
+          name: userContacts[serial].name,
+          lastMessage: 'No messages yet',
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+  }
+  
+  if (contacts.length === 0) {
+    contactList.innerHTML = '<div id="loading">No contacts yet</div>';
+    return;
+  }
+  
+  contacts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  
+  contactList.innerHTML = '';
+  contacts.forEach(contact => {
+    const div = document.createElement('div');
+    div.className = 'contact-item';
+    if (selectedContact && selectedContact.id === contact.id) {
+      div.classList.add('active');
+    }
+    
+    const isOnline = contact.type === 'user' && onlineUsers[contact.serialId] && 
+                     (Date.now() - onlineUsers[contact.serialId].lastSeen < 30000);
+    
+    div.innerHTML = `
+      <div>
+        <div class="contact-name">
+          ${contact.type === 'user' ? `<span class="online-status ${isOnline ? 'online' : 'offline'}"></span>` : ''}
+          ${escapeHtml(contact.name)}
+          ${contact.serialId ? ` <span class="contact-serial">#${contact.serialId}</span>` : ''}
+        </div>
+        <div class="contact-device">${contact.lastMessage ? escapeHtml(contact.lastMessage.substring(0, 30)) + '...' : ''}</div>
+      </div>
+    `;
+    
+    div.onclick = () => selectContact(contact.id, contact.type);
+    contactList.appendChild(div);
+  });
+}
+
+function selectContact(id, type) {
+  selectedContact = { id, type };
+  displayChat(id, type);
+  updateContactList();
+  
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.add('hidden-mobile');
+    document.getElementById('chat-area').classList.remove('hidden-mobile');
+  }
+}
+
+function showSidebar() {
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('hidden-mobile');
+    document.getElementById('chat-area').classList.add('hidden-mobile');
+  }
+}
+
+function displayChat(contactId, contactType) {
+  box.innerHTML = '';
+  
+  let filteredMessages;
+  
+  if (isAdmin && contactType === 'user') {
+    filteredMessages = allMessages.filter(msg =>
+      (msg.serialId === contactId && (!msg.targetSerial || msg.targetSerial === 'admin')) ||
+      (ADMIN_DEVICES.includes(msg.deviceId) && (!msg.targetSerial || msg.targetSerial === contactId))
+    );
+  } else if (!isAdmin && contactType === 'admin') {
+    filteredMessages = allMessages.filter(msg =>
+      (msg.serialId === serialId && (!msg.targetSerial || msg.targetSerial === 'admin')) ||
+      (ADMIN_DEVICES.includes(msg.deviceId) && (!msg.targetSerial || msg.targetSerial === serialId))
+    );
+  } else if (!isAdmin && contactType === 'user') {
+    filteredMessages = allMessages.filter(msg =>
+      (msg.serialId === serialId && msg.targetSerial === contactId) ||
+      (msg.serialId === contactId && msg.targetSerial === serialId)
+    );
+  } else {
+    box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>Select a contact to start chatting</div>';
+    return;
+  }
+  
+  if (filteredMessages.length === 0) {
+    box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chatting!</div>';
+  } else {
+    filteredMessages.forEach(msg => {
+      appendMessage(msg.name, msg.message, msg.timestamp, msg.pic, msg.serialId, msg.deviceId);
+    });
+  }
+  
+  box.scrollTop = box.scrollHeight;
+}
+
+function appendMessage(name, msg, timestamp, pic, msgSerialId, msgDeviceId) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'msg-wrapper';
+  
+  // Check if this is the current user's message
+  // For regular users: check serialId
+  // For admins: check deviceId (because admin messages to different users have different targetSerial)
+  const isMyMessage = isAdmin 
+    ? ADMIN_DEVICES.includes(msgDeviceId) && msgDeviceId === deviceId
+    : msgSerialId === serialId;
+  
+  if (isMyMessage) {
+    wrapper.classList.add('user');
+  } else {
+    wrapper.classList.add('other');
+  }
+
+  const div = document.createElement('div');
+  div.className = 'c';
+
+  const time = timestamp ? new Date(timestamp).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit'
+  }) : new Date().toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
+  div.innerHTML = `
+    ${wrapper.classList.contains('other') ? `<div class="n">${escapeHtml(name)} #${msgSerialId}</div>` : ''}
+    ${msg ? `<div class="m">${escapeHtml(msg)}</div>` : ''}
+    ${pic ? `<img src="${pic}" class="chat-img" onclick="window.open('${pic}')">` : ''}
+    <div class="t">${time}</div>
+  `;
+  
+  wrapper.appendChild(div);
+  box.appendChild(wrapper);
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function send() {
+  if (isSending) return;
+  if (!userName) {
+    alert('⚠️ Please set your name first');
+    return;
+  }
+  if (!selectedContact) {
+    alert('⚠️ Please select a contact first');
+    return;
+  }
+
+  const msg = document.getElementById('m').value.trim();
+  if (!msg) return alert('⚠️ Enter a message');
+
+  isSending = true;
+
+  const payload = {
+    name: userName,
+    message: msg,
+    deviceId: deviceId,
+    serialId: serialId,
+    targetSerial: selectedContact.type === 'admin' ? 'admin' : selectedContact.id
+  };
+
+  post(payload);
+}
+
+function post(data) {
+  // Optimistic update - show message immediately
+  const tempMsg = {
+    name: data.name,
+    message: data.message,
+    timestamp: new Date().toISOString(),
+    pic: '',
+    serialId: data.serialId,
+    deviceId: data.deviceId,
+    targetSerial: data.targetSerial
+  };
+  
+  appendMessage(tempMsg.name, tempMsg.message, tempMsg.timestamp, tempMsg.pic, tempMsg.serialId, tempMsg.deviceId);
+  box.scrollTop = box.scrollHeight;
+  
+  fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  })
+  .then(r => r.json())
+  .then(result => {
+    if (result.status === 'success') {
+      document.getElementById('m').value = '';
+      setTimeout(() => loadMessages(true), 500);
+    } else {
+      alert('❌ Failed to send: ' + (result.message || 'Unknown error'));
+      // Remove the optimistic message on error
+      const lastMsg = box.lastChild;
+      if (lastMsg) lastMsg.remove();
+    }
+    isSending = false;
+  })
+  .catch(err => {
+    console.error('Send error:', err);
+    alert('❌ Failed to send. Check your connection.');
+    // Remove the optimistic message on error
+    const lastMsg = box.lastChild;
+    if (lastMsg) lastMsg.remove();
+    isSending = false;
+  });
+}
+
+function sendHeartbeat() {
+  if (!userName || !serialId) return;
+  
+  fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      heartbeat: true,
+      serialId: serialId,
+      name: userName
+    })
+  }).catch(err => console.error('Heartbeat error:', err));
+}
+
+setInterval(() => {
+  if (userName) {
+    sendHeartbeat();
+  }
+}, 15000);
+
+setInterval(() => {
+  if (!isSending) {
+    loadMessages(true);
+  }
+}, 5000);
+
+initUser();
+loadMessages();
+
+document.getElementById('m').addEventListener('keypress', e => {
+  if (e.key === 'Enter') send();
+});
+
+document.getElementById('setup-name').addEventListener('keypress', e => {
+  if (e.key === 'Enter') saveName();
+});
+</script>
+</body>
+</html>
