@@ -433,6 +433,115 @@ button:hover {
   font-size: 13px;
   margin-right: 10px;
 }
+
+.help-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.help-content {
+  background: var(--bg-chat);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.help-header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.help-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.help-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.help-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(80vh - 80px);
+  color: var(--text-main);
+}
+
+.help-section {
+  margin-bottom: 25px;
+}
+
+.help-section h3 {
+  color: var(--header-bg);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.help-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.help-section ul {
+  margin-left: 20px;
+  color: var(--text-main);
+}
+
+.help-section li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.help-highlight {
+  color: var(--header-bg);
+  font-weight: 600;
+}
+
+.help-serial-example {
+  background: var(--bg-user);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.help-tip {
+  background: #fff3cd;
+  color: #856404;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+[data-theme="dark"] .help-tip {
+  background: #3a3a1a;
+  color: #ffc107;
+}
 </style>
 </head>
 
@@ -444,7 +553,8 @@ button:hover {
     <h3>💬 Deen Chat</h3>
   </div>
   <div class="header-right">
-    <button class="new-chat-btn" onclick="startNewChat()">New Chat</button>
+    <button class="new-chat-btn" id="new-chat-btn" onclick="startNewChat()">New Chat</button>
+    <button class="new-chat-btn" id="help-btn" onclick="showHelp()" style="background: #2196f3;">Help</button>
     <span class="user-badge" id="user-badge" style="display:none" onclick="changeName()" title="Click to change name"></span>
     <span class="admin-badge" id="admin-badge" style="display:none">ADMIN</span>
     <button id="theme-btn" onclick="toggleTheme()">Dark</button>
@@ -453,7 +563,7 @@ button:hover {
 
 <div class="main-container">
   <div id="sidebar" class="hidden">
-    <div class="sidebar-header">Chats</div>
+    <div class="sidebar-header">💬 Chats</div>
     <div class="contact-list" id="contact-list">
       <div id="loading">Loading contacts...</div>
     </div>
@@ -466,7 +576,7 @@ button:hover {
 
     <div class="inp">
       <div id="name-setup" class="name-setup hidden">
-        <p>Assalamu alaikum! Please enter your name to start chatting:</p>
+        <p>Welcome! Please enter your name to start chatting:</p>
         <input id="setup-name" placeholder="Your name" autocomplete="off">
         <button onclick="saveName()">Continue</button>
       </div>
@@ -481,6 +591,79 @@ button:hover {
           </button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div id="help-modal" class="help-modal hidden">
+  <div class="help-content">
+    <div class="help-header">
+      <h2>How to Use Deen Chat</h2>
+      <button class="help-close" onclick="closeHelp()">×</button>
+    </div>
+    <div class="help-body">
+      
+      <div class="help-section">
+        <h3>Your Serial ID</h3>
+        <p>Every user gets a unique 4-digit Serial ID when they join. This is your identity in Deen Chat!</p>
+        <div class="help-serial-example">
+          Your ID: <span id="help-serial">#0000</span>
+        </div>
+        <ul>
+          <li>Find your ID in the top-right corner (next to your name)</li>
+          <li>Share this ID with others so they can message you directly</li>
+          <li>Your ID never changes - it's saved on your device</li>
+        </ul>
+      </div>
+
+      <div class="help-section">
+        <h3>Admin Support Chat</h3>
+        <p>By default, you'll see the <span class="help-highlight">Admin Support</span> chat in your sidebar. This is where you can:</p>
+        <ul>
+          <li>Ask questions to the admin team</li>
+          <li>Get help with any issues</li>
+          <li>Share feedback or suggestions</li>
+        </ul>
+      </div>
+
+      <div class="help-section">
+        <h3>Private Messaging</h3>
+        <p>Want to chat directly with another user? Here's how:</p>
+        <ul>
+          <li>Click the <span class="help-highlight">New Chat</span> button in the header</li>
+          <li>Enter the other person's 4-digit Serial ID (e.g., <span class="help-highlight">2462</span>)</li>
+          <li>Start chatting! Your conversation is private between you two</li>
+          <li>All your private chats appear in the sidebar</li>
+        </ul>
+        <div class="help-tip">
+          💡 Tip: Ask your friend for their Serial ID. You can find yours at the top-right corner!
+        </div>
+      </div>
+
+      <div class="help-section">
+        <h3>Online Status</h3>
+        <p>See who's currently active:</p>
+        <ul>
+          <li><span style="color: #25d366;">●</span> Green dot = User is online</li>
+          <li><span style="color: #8696a0;">●</span> Gray dot = User is offline</li>
+        </ul>
+      </div>
+
+      <div class="help-section">
+        <h3>Other Features</h3>
+        <ul>
+          <li><strong>Change Name:</strong> Click on your name badge (top-right) to update your display name</li>
+          <li><strong>Dark Mode:</strong> Toggle between light and dark themes using the Dark/Light button</li>
+          <li><strong>Chat History:</strong> All your messages are automatically saved</li>
+        </ul>
+      </div>
+
+      <div class="help-section">
+        <h3>Privacy Note</h3>
+        <p>Your private chats are between you and the other person. Admins cannot see private messages in their panel - they can only be viewed from the database.</p>
+      </div>
+
     </div>
   </div>
 </div>
@@ -562,7 +745,7 @@ function registerUser() {
 }
 
 function updateUserBadge() {
-  document.getElementById('user-badge').textContent = `👤 ${userName} #${serialId}`;
+  document.getElementById('user-badge').textContent = `${userName} #${serialId}`;
   document.getElementById('user-badge').style.display = 'block';
 }
 
@@ -626,8 +809,10 @@ function initUser() {
   if (isAdmin) {
     document.getElementById('admin-badge').style.display = 'block';
     document.getElementById('sidebar').classList.remove('hidden');
-  } else if (Object.keys(userContacts).length > 0) {
-    document.getElementById('sidebar').classList.remove('hidden');
+  } else {
+    if (Object.keys(userContacts).length > 0) {
+      document.getElementById('sidebar').classList.remove('hidden');
+    }
   }
   
   if (!userName) {
@@ -674,7 +859,7 @@ function loadMessages(auto = false) {
         allMessages = [];
         updateContactList();
         if (!selectedContact) {
-          box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chating!</div>';
+          box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chatting!</div>';
         }
         return;
       }
@@ -869,9 +1054,6 @@ function appendMessage(name, msg, timestamp, pic, msgSerialId, msgDeviceId) {
   const wrapper = document.createElement('div');
   wrapper.className = 'msg-wrapper';
   
-  // Check if this is the current user's message
-  // For regular users: check serialId
-  // For admins: check deviceId (because admin messages to different users have different targetSerial)
   const isMyMessage = isAdmin 
     ? ADMIN_DEVICES.includes(msgDeviceId) && msgDeviceId === deviceId
     : msgSerialId === serialId;
@@ -910,6 +1092,15 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function showHelp() {
+  document.getElementById('help-modal').classList.remove('hidden');
+  document.getElementById('help-serial').textContent = '#' + serialId;
+}
+
+function closeHelp() {
+  document.getElementById('help-modal').classList.add('hidden');
+}
+
 function send() {
   if (isSending) return;
   if (!userName) {
@@ -938,7 +1129,6 @@ function send() {
 }
 
 function post(data) {
-  // Optimistic update - show message immediately
   const tempMsg = {
     name: data.name,
     message: data.message,
@@ -963,7 +1153,6 @@ function post(data) {
       setTimeout(() => loadMessages(true), 500);
     } else {
       alert('Failed to send: ' + (result.message || 'Unknown error'));
-      // Remove the optimistic message on error
       const lastMsg = box.lastChild;
       if (lastMsg) lastMsg.remove();
     }
@@ -972,7 +1161,6 @@ function post(data) {
   .catch(err => {
     console.error('Send error:', err);
     alert('Failed to send. Check your connection.');
-    // Remove the optimistic message on error
     const lastMsg = box.lastChild;
     if (lastMsg) lastMsg.remove();
     isSending = false;
@@ -1013,6 +1201,12 @@ document.getElementById('m').addEventListener('keypress', e => {
 
 document.getElementById('setup-name').addEventListener('keypress', e => {
   if (e.key === 'Enter') saveName();
+});
+
+document.getElementById('help-modal').addEventListener('click', e => {
+  if (e.target.id === 'help-modal') {
+    closeHelp();
+  }
 });
 </script>
 </body>
