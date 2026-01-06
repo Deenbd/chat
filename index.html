@@ -92,7 +92,7 @@ body{
 }
 
 .new-chat-btn {
-  background: #25d366;
+  background: #22a1b1;
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -444,10 +444,10 @@ button:hover {
     <h3>💬 Deen Chat</h3>
   </div>
   <div class="header-right">
-    <button class="new-chat-btn" onclick="startNewChat()">➕ New Chat</button>
+    <button class="new-chat-btn" onclick="startNewChat()">New Chat</button>
     <span class="user-badge" id="user-badge" style="display:none" onclick="changeName()" title="Click to change name"></span>
     <span class="admin-badge" id="admin-badge" style="display:none">ADMIN</span>
-    <button id="theme-btn" onclick="toggleTheme()">🌙 Dark</button>
+    <button id="theme-btn" onclick="toggleTheme()">Dark</button>
   </div>
 </div>
 
@@ -532,7 +532,7 @@ function getSavedName() {
 function saveName() {
   const name = document.getElementById('setup-name').value.trim();
   if (!name) {
-    alert('⚠️ Please enter your name');
+    alert('Please enter your name');
     return;
   }
   
@@ -574,7 +574,7 @@ function changeName() {
     updateUserBadge();
     sendHeartbeat();
     registerUser();
-    alert('✅ Name changed successfully!');
+    alert('Name changed successfully!');
   }
 }
 
@@ -583,12 +583,12 @@ function startNewChat() {
   if (!targetSerial) return;
   
   if (!/^\d{4}$/.test(targetSerial)) {
-    alert('⚠️ Please enter a valid 4-digit Serial ID');
+    alert('Please enter a valid 4-digit Serial ID');
     return;
   }
   
   if (targetSerial === serialId) {
-    alert('⚠️ You cannot chat with yourself!');
+    alert('You cannot chat with yourself!');
     return;
   }
   
@@ -648,11 +648,11 @@ function toggleTheme() {
   
   if (isDark) {
     html.removeAttribute('data-theme');
-    btn.textContent = '🌙 Dark';
+    btn.textContent = 'Dark';
     localStorage.setItem('theme', 'light');
   } else {
     html.setAttribute('data-theme', 'dark');
-    btn.textContent = '☀️ Light';
+    btn.textContent = 'Light';
     localStorage.setItem('theme', 'dark');
   }
 }
@@ -660,7 +660,7 @@ function toggleTheme() {
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
   document.documentElement.setAttribute('data-theme', 'dark');
-  document.getElementById('theme-btn').textContent = '☀️ Light';
+  document.getElementById('theme-btn').textContent = 'Light';
 }
 
 function loadMessages(auto = false) {
@@ -674,7 +674,7 @@ function loadMessages(auto = false) {
         allMessages = [];
         updateContactList();
         if (!selectedContact) {
-          box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chatting!</div>';
+          box.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No messages yet. Start chating!</div>';
         }
         return;
       }
@@ -703,7 +703,7 @@ function loadMessages(auto = false) {
     })
     .catch(err => {
       console.error('Load error:', err);
-      box.innerHTML = '<div id="loading">❌ Failed to load. Click refresh.</div>';
+      box.innerHTML = '<div id="loading">Failed to load. Click refresh.</div>';
     });
 }
 
@@ -913,16 +913,16 @@ function escapeHtml(text) {
 function send() {
   if (isSending) return;
   if (!userName) {
-    alert('⚠️ Please set your name first');
+    alert('Please set your name first');
     return;
   }
   if (!selectedContact) {
-    alert('⚠️ Please select a contact first');
+    alert('Please select a contact first');
     return;
   }
 
   const msg = document.getElementById('m').value.trim();
-  if (!msg) return alert('⚠️ Enter a message');
+  if (!msg) return alert('Enter a message');
 
   isSending = true;
 
@@ -962,7 +962,7 @@ function post(data) {
       document.getElementById('m').value = '';
       setTimeout(() => loadMessages(true), 500);
     } else {
-      alert('❌ Failed to send: ' + (result.message || 'Unknown error'));
+      alert('Failed to send: ' + (result.message || 'Unknown error'));
       // Remove the optimistic message on error
       const lastMsg = box.lastChild;
       if (lastMsg) lastMsg.remove();
@@ -971,7 +971,7 @@ function post(data) {
   })
   .catch(err => {
     console.error('Send error:', err);
-    alert('❌ Failed to send. Check your connection.');
+    alert('Failed to send. Check your connection.');
     // Remove the optimistic message on error
     const lastMsg = box.lastChild;
     if (lastMsg) lastMsg.remove();
