@@ -27,11 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 /* LAYOUT */
 .main-container{display:flex;flex:1;overflow:hidden}
 #sidebar{width:300px;background:var(--sidebar-bg);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.sidebar-header{padding:10px 12px;background:var(--header-bg);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-shrink:0}
-.sidebar-header span{font-weight:600;font-size:14px}
-.sidebar-actions{display:flex;gap:5px}
-.sdbtn{background:rgba(255,255,255,.18);color:#fff;border:none;padding:5px 10px;border-radius:14px;cursor:pointer;font-size:11px;font-weight:600;transition:background .15s;white-space:nowrap}
-.sdbtn:hover{background:rgba(255,255,255,.32)}
+.sidebar-header{padding:12px 14px;background:var(--header-bg);color:#fff;font-weight:600;font-size:14px}
 .contact-list{flex:1;overflow-y:auto}
 .ci{padding:11px 13px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s;display:flex;gap:9px;align-items:flex-start}
 .ci:hover{background:var(--hover-bg)}.ci.active{background:var(--bg-user)}
@@ -49,7 +45,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .bok:hover{background:#388e3c}
 .bno{background:#e53935;color:#fff;padding:4px 11px;border-radius:15px;font-size:11px;font-weight:600;border:none;cursor:pointer}
 .bno:hover{background:#b71c1c}
-.grp-badge{background:#1976d2;color:#fff;font-size:9px;padding:2px 6px;border-radius:8px;font-weight:700}
 
 /* CHAT AREA */
 #chat-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
@@ -102,8 +97,10 @@ button{border:none;cursor:pointer;transition:background .18s}
 .tk-spc:hover{background:#e1bee7}
 .tk-bs{width:44px;height:27px;background:var(--input-bg);border:1.5px solid #e53935;border-radius:5px;cursor:pointer;color:#e53935;font-size:13px;font-weight:600}
 .tk-bs:hover{background:#ffebee}
+/* tanag display */
 #tdisp{flex:1;padding:9px 13px;border-radius:24px;border:1px solid var(--border);background:var(--input-bg);color:var(--text-main);font-size:13px;min-height:40px;display:none;align-items:center;flex-wrap:wrap;gap:1px;cursor:text;position:relative;overflow:hidden}
 #tdisp[data-empty="true"]::before{content:attr(data-ph);color:var(--text-time);position:absolute;pointer-events:none}
+/* cursor blink in tanag display */
 #tdisp::after{content:'|';color:var(--text-main);animation:blink 1s step-end infinite;display:inline-block;margin-left:1px;font-weight:300}
 #tdisp[data-empty="true"]::after{display:none}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -122,27 +119,8 @@ button{border:none;cursor:pointer;transition:background .18s}
 .mbdy input{width:100%}
 .mftr{padding:11px 19px;display:flex;gap:7px;border-top:1px solid var(--border);flex-shrink:0}
 .mftr button{flex:1;padding:9px;border-radius:21px;font-weight:600;font-size:13px}
-.bblue{background:var(--header-bg);color:#fff}.bblue:hover{background:#1565c0}
 .bpurp{background:#6a1b9a;color:#fff}.bpurp:hover{background:#4a148c}
 .bcan{background:#e0e0e0;color:#333}.bcan:hover{background:#bdbdbd}
-
-/* NEW GROUP MODAL - member list */
-.mem-list{max-height:150px;overflow-y:auto;border:1px solid var(--border);border-radius:7px;padding:4px}
-.mem-item{display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:5px;cursor:pointer;transition:background .12s}
-.mem-item:hover{background:var(--hover-bg)}
-.mem-item input[type="checkbox"]{accent-color:#1976d2;width:15px;height:15px;flex-shrink:0}
-.mem-item-info{flex:1;font-size:12px;color:var(--text-main);font-weight:500}
-.mem-item-id{font-size:10px;color:var(--text-time)}
-/* Group info bar */
-.grp-info-bar{display:flex;gap:7px;align-items:center;margin-bottom:10px;padding:9px;background:var(--bg-user);border-radius:8px}
-.grp-info-bar img{width:40px;height:40px;border-radius:50%;object-fit:cover}
-.grp-info-text{flex:1}
-.grp-info-name{font-weight:600;font-size:13px;color:var(--text-main)}
-.grp-info-members{font-size:11px;color:var(--text-time);margin-top:1px}
-/* Group invite notification */
-.grp-inv-item{border-left:4px solid #1976d2;padding:8px 10px;background:var(--bg-user);border-radius:0 7px 7px 0;margin-bottom:5px}
-.grp-inv-name{font-weight:600;font-size:12px;color:var(--text-main)}
-.grp-inv-from{font-size:11px;color:var(--text-time);margin:2px 0 5px}
 
 /* HELP */
 .hov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.73);display:flex;align-items:center;justify-content:center;z-index:1500}
@@ -183,9 +161,6 @@ button{border:none;cursor:pointer;transition:background .18s}
 .tladdbtn{background:var(--header-bg);color:#fff;padding:8px 13px;border-radius:19px;font-weight:600;font-size:12px;white-space:nowrap;border:none;cursor:pointer}
 .tladdbtn:hover{background:#1565c0}
 
-/* GROUP REG MODAL */
-.grp-reg-box{background:var(--bg-chat);max-width:420px;width:93%;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.4);max-height:90vh;display:flex;flex-direction:column}
-
 /* MISC */
 .hidden{display:none!important}
 #ldg{text-align:center;color:var(--text-time);padding:18px;font-size:13px}
@@ -207,6 +182,7 @@ button{border:none;cursor:pointer;transition:background .18s}
     <h3>Deen Chat</h3>
   </div>
   <div class="header-right">
+    <button class="hbtn acc" onclick="startNewChat()">New Chat</button>
     <button class="hbtn acc" onclick="showHelp()">Help</button>
     <button id="tbtn" class="hbtn" onclick="toggleTanag()" style="display:none">Tanag</button>
     <button id="tlbtn" class="hbtn" onclick="openTL()" style="display:none">Tanag List</button>
@@ -218,23 +194,17 @@ button{border:none;cursor:pointer;transition:background .18s}
 
 <div class="main-container">
   <div id="sidebar" class="hidden">
-    <div class="sidebar-header">
-      <span>Chats</span>
-      <div class="sidebar-actions">
-        <button class="sdbtn" onclick="startNewChat()">New Chat</button>
-        <button class="sdbtn" onclick="openNewGroup()">New Group</button>
-      </div>
-    </div>
+    <div class="sidebar-header">Chats</div>
     <div class="contact-list" id="cl"><div id="ldg">Loading...</div></div>
   </div>
   <div id="chat-area">
     <div id="cchdr" class="hidden">
       <img id="cc-av" src="bb.png" onerror="this.src='bb.png'">
-      <div style="flex:1"><div id="cc-name"></div><div id="cc-status"></div></div>
-      <div id="cc-actions"></div>
+      <div><div id="cc-name"></div><div id="cc-status"></div></div>
     </div>
     <div id="box"><div id="ldg">Loading messages...</div></div>
     <div class="inp">
+      <!-- name setup -->
       <div id="nsetup" class="name-setup hidden">
         <p>Welcome! Set up your profile to start chatting:</p>
         <label>Your Name *</label>
@@ -247,11 +217,14 @@ button{border:none;cursor:pointer;transition:background .18s}
         </div>
         <button onclick="saveName()">Continue</button>
       </div>
+      <!-- chat input -->
       <div id="cinput" class="hidden">
+        <!-- Tanag keyboard -->
         <div id="tkb">
           <div class="tkr" id="tkr1"></div>
           <div class="tkr" id="tkr2"></div>
           <div class="tkr" id="tkr3"></div>
+          <!-- punctuation row -->
           <div class="tkr" id="tkr4"></div>
           <div class="tkr">
             <button class="tk-spc" onclick="tSpc()">Space</button>
@@ -270,7 +243,7 @@ button{border:none;cursor:pointer;transition:background .18s}
   </div>
 </div>
 
-<!-- GROUP REG MODAL (Tiyuhui) -->
+<!-- GROUP REG MODAL -->
 <div id="grpmod" class="ov hidden">
   <div class="mbox">
     <div class="mhdr"><h2>Tiyuhui Group</h2><button class="mcl" onclick="closeGrp()">x</button></div>
@@ -284,50 +257,6 @@ button{border:none;cursor:pointer;transition:background .18s}
       <button class="bcan" onclick="closeGrp()">Cancel</button>
       <button class="bpurp" onclick="saveGrp()">Join</button>
     </div>
-  </div>
-</div>
-
-<!-- NEW GROUP MODAL -->
-<div id="ngmod" class="ov hidden">
-  <div class="mbox">
-    <div class="mhdr blue"><h2>Create New Group</h2><button class="mcl" onclick="document.getElementById('ngmod').classList.add('hidden')">x</button></div>
-    <div class="mbdy">
-      <label>Group Name *</label>
-      <input id="ng-name" placeholder="Enter group name" autocomplete="off">
-      <label>Description <span style="color:var(--text-time);font-weight:400;font-size:10px">(Optional)</span></label>
-      <input id="ng-desc" placeholder="What is this group about?" autocomplete="off">
-      <label>Group Picture URL <span style="color:var(--text-time);font-weight:400;font-size:10px">(Optional)</span></label>
-      <input id="ng-pic" placeholder="https://example.com/group.jpg" autocomplete="off">
-      <label style="margin-top:12px">Add Members</label>
-      <p style="font-size:11px;color:var(--text-time);margin-bottom:5px">Select from your contacts or enter a Serial ID:</p>
-      <div class="mem-list" id="ng-contacts"></div>
-      <div style="display:flex;gap:6px;margin-top:7px">
-        <input id="ng-sid" placeholder="Or enter 4-digit ID" maxlength="4" autocomplete="off" style="flex:1">
-        <button class="tladdbtn" onclick="ngAddById()">Add</button>
-      </div>
-      <div id="ng-added" style="font-size:11px;color:#1976d2;margin-top:4px"></div>
-    </div>
-    <div class="mftr">
-      <button class="bcan" onclick="document.getElementById('ngmod').classList.add('hidden')">Cancel</button>
-      <button class="bblue" onclick="createGroup()">Create Group</button>
-    </div>
-  </div>
-</div>
-
-<!-- GROUP INVITE MODAL -->
-<div id="ginvmod" class="ov hidden">
-  <div class="mbox">
-    <div class="mhdr blue"><h2>Group Invitations</h2><button class="mcl" onclick="document.getElementById('ginvmod').classList.add('hidden')">x</button></div>
-    <div class="mbdy" id="ginv-list"></div>
-  </div>
-</div>
-
-<!-- GROUP INFO MODAL -->
-<div id="ginfomod" class="ov hidden">
-  <div class="mbox">
-    <div class="mhdr blue"><h2>Group Info</h2><button class="mcl" onclick="document.getElementById('ginfomod').classList.add('hidden')">x</button></div>
-    <div class="mbdy" id="ginfo-body"></div>
-    <div class="mftr" id="ginfo-ftr"></div>
   </div>
 </div>
 
@@ -345,12 +274,8 @@ button{border:none;cursor:pointer;transition:background .18s}
       <div class="hs">
         <h3>Friend Request System</h3>
         <p>To start a private chat:</p>
-        <ul><li>Click <span class="hhl">New Chat</span> in the sidebar and enter the other person's 4-digit ID</li><li>A request is sent — they must accept it first</li><li>Once accepted, both sides can chat freely</li></ul>
+        <ul><li>Click <span class="hhl">New Chat</span> and enter the other person's 4-digit ID</li><li>A request is sent — they must accept it first</li><li>Once accepted, both sides can chat freely</li></ul>
         <div class="htip">Incoming requests appear at the top of your sidebar with an orange border.</div>
-      </div>
-      <div class="hs">
-        <h3>Groups</h3>
-        <ul><li>Click <span class="hhl">New Group</span> in the sidebar to create a group</li><li>Add members by selecting contacts or entering their ID</li><li>Group invitations appear in your sidebar</li><li>Group admin can add/remove members</li></ul>
       </div>
       <div class="hs"><h3>Profile Picture</h3><ul><li>Upload your photo to Imgur, Google Drive, etc.</li><li>Paste the direct image URL in profile settings</li></ul></div>
       <div class="hs"><h3>Online Status</h3><ul><li>Green dot = Online</li><li>Gray dot = Offline</li></ul></div>
@@ -396,38 +321,38 @@ button{border:none;cursor:pointer;transition:background .18s}
 </div>
 
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbxDGzrKnX7Hmqy2CHoER4gaZ9ECLn8TbvAnfRkQYtjXr1rsjHeRkMKLiTvbVTTARI1x/exec';
+const API = 'https://script.google.com/macros/s/AKfycbwBElECjNuxVJHj_cpODhrp8OXzMGqhlAD5zzxD7wo7eUriEPn2eKirodRo-DjmoLAJ/exec';
 const ADMINS = ['dev_1767677115148_nbxfegur4','dev_1767683003779_ywv7037na'];
 const GRP = 'group_tiyuhui';
 const REQ='req_', REQOK='reqaccept_', REQNO='reqdecline_';
 const TGA='tanagaccess_', TGR='tanagrevoke_';
-// General group prefixes
-const GINV='grpinv_';    // group invite to user: grpinv_[serialId]
-const GINVOK='grpinvok_'; // user accepted: grpinvok_[groupId]
-const GINVNO='grpinvno_'; // user declined
 
+// Tanag keyboard layout
 const KB1=['q','w','e','r','t','y','u','i','o','p'];
 const KB2=['a','s','d','f','g','h','j','k','l'];
 const KB3=['z','x','c','v','b','n','m'];
-const PUNC=['.', ',', '?', '!', ':', ';', "'", '"', '-', '–', '—','(', ')', '[', ']', '{', '}', '...', '/', '\\', '@', '#', '&', '*'];
+// Punctuation that appear as-is (not tanag images)
+const PUNC=['.', ',', '?', '!', ':', ';', "'", '"', '-', '–', '—',
+            '(', ')', '[', ']', '{', '}', '...', '/', '\\', '@', '#', '&', '*'];
 
 let did='', uname='', uav='', sid='';
 let isAdm=false, tMode=false, isDk=false;
 let msgs=[], selC=null, sending=false;
 let online={}, ucon={}, pendIn={};
-let userLastSeen={}; // {serialId: {name, avatar, lastSeen (ISO)}}
-let pendGrpInv={}; // groupId -> {name, pic, adminName, adminSid}
-let myGroups={};   // groupId -> {name, pic, adminSid, members:[{sid,name}]}
-let tbuf=[];
+let tbuf=[]; // [{t:'tk'|'p'|'s', v:string}]  tk=tanag letter, p=punctuation/text, s=space
 
 // ─── TANAG WHITELIST ──────────────────────────────────────────
 function getTL(){try{return JSON.parse(localStorage.getItem('tanagWL')||'{}')}catch(e){return{}}}
 function saveTL(w){localStorage.setItem('tanagWL',JSON.stringify(w))}
+
 function hasTanag(){
   if(isAdm) return true;
   if(localStorage.getItem('grpReg_tiyuhui')) return true;
+  // Check whitelist — admin writes it to a shared key so user's browser doesn't have it.
+  // Instead we rely on the server notification (tanagaccess_ message) which sets localStorage.
   return !!localStorage.getItem('tanagGranted_'+sid);
 }
+
 function imgSrc(l){ return isDk ? l.toUpperCase()+'.png' : l.toLowerCase()+'.png'; }
 
 // ─── BUILD TANAG KEYBOARD ─────────────────────────────────────
@@ -435,7 +360,8 @@ function buildKB(){
   [[KB1,'tkr1'],[KB2,'tkr2'],[KB3,'tkr3']].forEach(([row,id])=>{
     const el=document.getElementById(id); el.innerHTML='';
     row.forEach(l=>{
-      const btn=document.createElement('button'); btn.className='tk'; btn.title=l;
+      const btn=document.createElement('button');
+      btn.className='tk'; btn.title=l;
       btn.onclick=()=>tIns({t:'tk',v:l});
       const img=document.createElement('img'); img.src=imgSrc(l); img.alt=l;
       img.onerror=()=>{btn.classList.add('miss');img.style.display='none';btn.textContent=l;};
@@ -443,12 +369,16 @@ function buildKB(){
       btn.appendChild(img); btn.appendChild(lbl); el.appendChild(btn);
     });
   });
+  // Punctuation row
   const p4=document.getElementById('tkr4'); p4.innerHTML='';
   PUNC.forEach(p=>{
-    const btn=document.createElement('button'); btn.className='tk punc'; btn.textContent=p; btn.title=p;
-    btn.onclick=()=>tIns({t:'p',v:p}); p4.appendChild(btn);
+    const btn=document.createElement('button');
+    btn.className='tk punc'; btn.textContent=p; btn.title=p;
+    btn.onclick=()=>tIns({t:'p',v:p});
+    p4.appendChild(btn);
   });
 }
+
 function refreshKBImgs(){
   document.querySelectorAll('.tk img').forEach(img=>{
     if(img.alt&&/^[a-z]$/.test(img.alt)) img.src=imgSrc(img.alt);
@@ -460,7 +390,10 @@ function tIns(item){ tbuf.push(item); renderTD(); }
 function tSpc(){ tbuf.push({t:'s',v:' '}); renderTD(); }
 function tBS(){ if(tbuf.length) tbuf.pop(); renderTD(); }
 function tClear(){ tbuf=[]; renderTD(); }
-function tbufToToken(){ return tbuf.map(i=>i.t==='tk'?'[tanag:'+i.v+']':i.v).join(''); }
+function tbufToToken(){
+  return tbuf.map(i=>i.t==='tk'?'[tanag:'+i.v+']':i.v).join('');
+}
+
 function renderTD(){
   const d=document.getElementById('tdisp'); if(!d) return;
   d.innerHTML='';
@@ -468,13 +401,19 @@ function renderTD(){
   d.dataset.empty='false';
   tbuf.forEach(item=>{
     if(item.t==='tk'){
-      const img=document.createElement('img'); img.src=imgSrc(item.v); img.alt=item.v;
+      const img=document.createElement('img');
+      img.src=imgSrc(item.v); img.alt=item.v;
       img.style.cssText='height:1.15em;vertical-align:middle;display:inline-block;margin:0 1px';
       img.onerror=()=>{const sp=document.createElement('span');sp.textContent=item.v;img.replaceWith(sp);};
       d.appendChild(img);
-    } else { const sp=document.createElement('span'); sp.textContent=item.v; d.appendChild(sp); }
+    } else {
+      const sp=document.createElement('span');
+      sp.textContent=item.v;
+      d.appendChild(sp);
+    }
   });
 }
+
 function renderTanag(html){
   return html.replace(/\[tanag:([a-z])\]/g,(m,l)=>{
     const src=isDk?l.toUpperCase()+'.png':l.toLowerCase()+'.png';
@@ -492,12 +431,18 @@ function toggleTanag(){
   const disp=document.getElementById('tdisp');
   if(tMode){
     btn.textContent='ENG'; btn.classList.add('ton');
-    kb.style.display='block'; minput.style.display='none'; disp.style.display='flex'; tClear();
+    kb.style.display='block';
+    minput.style.display='none'; disp.style.display='flex';
+    tClear();
   } else {
     btn.textContent='Tanag'; btn.classList.remove('ton');
-    kb.style.display='none'; minput.style.display=''; disp.style.display='none'; tClear();
+    kb.style.display='none';
+    minput.style.display=''; disp.style.display='none';
+    tClear();
   }
 }
+
+// Physical keys in tanag mode
 document.addEventListener('keydown',function(e){
   if(!tMode) return;
   const disp=document.getElementById('tdisp');
@@ -506,303 +451,80 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Backspace'){e.preventDefault();tBS();return;}
   if(e.key===' '){e.preventDefault();tSpc();return;}
   if(/^[a-zA-Z]$/.test(e.key)){
-    e.preventDefault(); tIns({t:'tk',v:e.key.toLowerCase()});
-    document.getElementById('tkb').style.display='none'; return;
+    e.preventDefault();
+    tIns({t:'tk',v:e.key.toLowerCase()});
+    // hide on-screen keyboard after physical key
+    document.getElementById('tkb').style.display='none';
+    return;
   }
-  if(e.key.length===1&&!e.ctrlKey&&!e.metaKey&&!e.altKey){ e.preventDefault(); tIns({t:'p',v:e.key}); }
+  // Punctuation keys — insert as plain text
+  if(e.key.length===1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+    e.preventDefault();
+    tIns({t:'p',v:e.key});
+  }
 });
 
 // ─── TANAG WHITELIST MODAL ────────────────────────────────────
 function openTL(){ renderTLItems(); document.getElementById('tlmod').classList.remove('hidden'); }
 function closeTL(){ document.getElementById('tlmod').classList.add('hidden'); document.getElementById('tlst').textContent=''; }
+
 function renderTLItems(){
   const wl=getTL(); const c=document.getElementById('tlitems'); c.innerHTML='';
   const entries=Object.values(wl);
   if(!entries.length){ c.innerHTML='<p style="color:var(--text-time);font-size:12px">No users added yet.</p>'; return; }
   entries.forEach(e=>{
     const div=document.createElement('div'); div.className='tli';
+    // Show real name from allMessages if available
     const realMsg=msgs.filter(m=>m.serialId===e.serialId);
-    const dispName=realMsg.length?realMsg[realMsg.length-1].name:(e.name||'User #'+e.serialId);
+    const dispName=realMsg.length ? realMsg[realMsg.length-1].name : (e.name||'User #'+e.serialId);
     div.innerHTML=`<div class="tli-inf"><div class="tli-n">${escH(dispName)}</div><div class="tli-id">#${e.serialId}</div></div>
       <button class="tlrm" onclick="rmTL('${e.serialId}')" title="Remove"><img src="kata.png" alt="X" onerror="this.parentNode.textContent='X'"></button>`;
     c.appendChild(div);
   });
 }
+
 function addTL(){
-  const inp=document.getElementById('tlid'); const st=document.getElementById('tlst');
+  const inp=document.getElementById('tlid');
+  const st=document.getElementById('tlst');
   const tid=inp.value.trim();
   if(!/^\d{4}$/.test(tid)){st.textContent='Please enter a valid 4-digit ID.';return;}
+  // Get name from messages
   const related=msgs.filter(m=>m.serialId===tid);
-  const name=related.length?related[related.length-1].name:'User #'+tid;
+  const name=related.length ? related[related.length-1].name : 'User #'+tid;
   const wl=getTL(); wl[tid]={serialId:tid,name}; saveTL(wl);
-  inp.value=''; st.textContent=name+' (#'+tid+') added.'; renderTLItems();
-  fetch(API,{method:'POST',body:JSON.stringify({name:'System',message:'__tanag_granted__',deviceId:did,serialId:sid,avatar:uav,targetSerial:TGA+tid})}).catch(()=>{});
+  inp.value=''; st.textContent=name+' (#'+tid+') added.';
+  renderTLItems();
+  // Notify that user via sheet message
+  fetch(API,{method:'POST',body:JSON.stringify({
+    name:'System',message:'__tanag_granted__',
+    deviceId:did,serialId:sid,avatar:uav,
+    targetSerial:TGA+tid
+  })}).catch(()=>{});
 }
+
 function rmTL(tid){
   const wl=getTL(); delete wl[tid]; saveTL(wl); renderTLItems();
-  fetch(API,{method:'POST',body:JSON.stringify({name:'System',message:'__tanag_revoked__',deviceId:did,serialId:sid,avatar:uav,targetSerial:TGR+tid})}).catch(()=>{});
+  fetch(API,{method:'POST',body:JSON.stringify({
+    name:'System',message:'__tanag_revoked__',
+    deviceId:did,serialId:sid,avatar:uav,
+    targetSerial:TGR+tid
+  })}).catch(()=>{});
 }
+
+// Process tanag access messages from server
 function procTanag(messages){
   messages.forEach(msg=>{
-    if(msg.targetSerial===TGA+sid){ localStorage.setItem('tanagGranted_'+sid,'1'); document.getElementById('tbtn').style.display='block'; buildKB(); }
-    if(msg.targetSerial===TGR+sid){ localStorage.removeItem('tanagGranted_'+sid); if(tMode) toggleTanag(); document.getElementById('tbtn').style.display='none'; }
-  });
-}
-
-// ─── GENERAL GROUP SYSTEM ─────────────────────────────────────
-function loadMyGroups(){
-  try{ myGroups=JSON.parse(localStorage.getItem('myGroups')||'{}'); }catch(e){ myGroups={}; }
-}
-function saveMyGroups(){ localStorage.setItem('myGroups',JSON.stringify(myGroups)); }
-function loadPendGrpInv(){
-  try{ pendGrpInv=JSON.parse(localStorage.getItem('pendGrpInv')||'{}'); }catch(e){ pendGrpInv={}; }
-}
-function savePendGrpInv(){ localStorage.setItem('pendGrpInv',JSON.stringify(pendGrpInv)); }
-
-function openNewGroup(){
-  if(!uname){alert('Please set your name first');return;}
-  // Populate contacts list
-  const c=document.getElementById('ng-contacts'); c.innerHTML='';
-  const ngAdded=new Set();
-  const all=[...Object.values(ucon)];
-  if(!all.length) c.innerHTML='<p style="font-size:12px;color:var(--text-time);padding:5px">No contacts yet. You can add by ID below.</p>';
-  all.forEach(contact=>{
-    const div=document.createElement('div'); div.className='mem-item';
-    div.innerHTML=`<input type="checkbox" id="ngc_${contact.serialId}" value="${contact.serialId}">
-      <label for="ngc_${contact.serialId}" style="cursor:pointer;flex:1">
-        <div class="mem-item-info">${escH(contact.name)}</div>
-        <div class="mem-item-id">#${contact.serialId}</div>
-      </label>`;
-    c.appendChild(div);
-  });
-  document.getElementById('ng-name').value='';
-  document.getElementById('ng-desc').value='';
-  document.getElementById('ng-pic').value='';
-  document.getElementById('ng-sid').value='';
-  document.getElementById('ng-added').textContent='';
-  ngExtraMembers=[];
-  document.getElementById('ngmod').classList.remove('hidden');
-}
-
-// Extra members added by ID in new group modal
-let ngExtraMembers=[];
-function ngAddById(){
-  const inp=document.getElementById('ng-sid');
-  const t=inp.value.trim();
-  if(!/^\d{4}$/.test(t)){alert('Enter valid 4-digit ID');return;}
-  if(t===sid){alert('That is your own ID');return;}
-  if(!ngExtraMembers.find(m=>m.serialId===t)){
-    const related=msgs.filter(m=>m.serialId===t);
-    const nm=related.length?related[related.length-1].name:'User #'+t;
-    const av=related.length&&related[related.length-1].avatar?related[related.length-1].avatar:'bb.png';
-    ngExtraMembers.push({serialId:t,name:nm,avatar:av});
-    document.getElementById('ng-added').textContent='Added: '+ngExtraMembers.map(m=>m.name).join(', ');
-  }
-  inp.value='';
-}
-
-function createGroup(){
-  const name=document.getElementById('ng-name').value.trim();
-  if(!name){alert('Group name required');return;}
-  const desc=document.getElementById('ng-desc').value.trim();
-  const pic=document.getElementById('ng-pic').value.trim()||'bb.png';
-  // Short 5-digit numeric group ID prefixed g
-  const groupId='g'+Math.floor(10000+Math.random()*90000);
-  const checked=[];
-  document.querySelectorAll('#ng-contacts input[type="checkbox"]:checked').forEach(cb=>{
-    const s=cb.value; if(ucon[s]) checked.push({serialId:s,name:ucon[s].name,avatar:ucon[s].avatar||'bb.png'});
-  });
-  ngExtraMembers.forEach(m=>{ if(!checked.find(c=>c.serialId===m.serialId)) checked.push(m); });
-  ngExtraMembers=[];
-  const members=[{serialId:sid,name:uname,avatar:uav},...checked];
-  const self=[{serialId:sid,name:uname,avatar:uav}];
-  const grpData={id:groupId,name,desc,pic,adminSid:sid,adminName:uname,members:self,invited:checked,createdAt:new Date().toISOString()};
-  myGroups[groupId]=grpData; saveMyGroups();
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname,
-    message:'__grp_created__:'+JSON.stringify({id:groupId,name,desc,pic,adminSid:sid,adminName:uname,members}),
-    deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId
-  })}).catch(()=>{});
-  checked.forEach(m=>{ sendGrpInvite(groupId,name,desc,pic,m.serialId); });
-  document.getElementById('ngmod').classList.add('hidden');
-  selectC(groupId,'ggroup');
-  alert('Group "'+name+'" created! Group ID: '+groupId);
-}
-
-function sendGrpInvite(groupId,groupName,groupDesc,groupPic,toSid){
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname,
-    message:'__grp_invite__:'+JSON.stringify({groupId,groupName,groupDesc,groupPic,adminSid:sid,adminName:uname}),
-    deviceId:did,serialId:sid,avatar:uav,
-    targetSerial:GINV+toSid
-  })}).catch(()=>{});
-}
-
-function procGrpInvites(messages){
-  let changed=false;
-  messages.forEach(msg=>{
-    if(msg.targetSerial===GINV+sid&&msg.message.startsWith('__grp_invite__:')){
-      try{
-        const inv=JSON.parse(msg.message.replace('__grp_invite__:',''));
-        if(!myGroups[inv.groupId]&&!pendGrpInv[inv.groupId]){
-          pendGrpInv[inv.groupId]={groupId:inv.groupId,name:inv.groupName,desc:inv.groupDesc||'',pic:inv.groupPic||'bb.png',adminSid:inv.adminSid,adminName:inv.adminName};
-          savePendGrpInv(); changed=true;
-        }
-      }catch(e){}
+    if(msg.targetSerial===TGA+sid){
+      localStorage.setItem('tanagGranted_'+sid,'1');
+      document.getElementById('tbtn').style.display='block';
+      buildKB();
     }
-    // Group member joined (grpinvok_)
-    if(msg.targetSerial&&msg.targetSerial.startsWith(GINVOK)&&msg.message.startsWith('__grp_joined__:')){
-      const groupId=msg.targetSerial.replace(GINVOK,'');
-      if(myGroups[groupId]){
-        try{
-          const info=JSON.parse(msg.message.replace('__grp_joined__:',''));
-          if(!myGroups[groupId].members.find(m=>m.serialId===info.serialId)){
-            myGroups[groupId].members.push(info);
-            // Remove from invited list
-            if(myGroups[groupId].invited) myGroups[groupId].invited=myGroups[groupId].invited.filter(m=>m.serialId!==info.serialId);
-            saveMyGroups(); changed=true;
-          }
-        }catch(e){}
-      }
-    }
-    // Sync group creation messages
-    if(msg.message&&msg.message.startsWith('__grp_created__:')){
-      try{
-        const grpData=JSON.parse(msg.message.replace('__grp_created__:',''));
-        if(grpData.members&&grpData.members.find(m=>m.serialId===sid)&&!myGroups[grpData.id]){
-          myGroups[grpData.id]=grpData; saveMyGroups(); changed=true;
-        }
-      }catch(e){}
+    if(msg.targetSerial===TGR+sid){
+      localStorage.removeItem('tanagGranted_'+sid);
+      if(tMode) toggleTanag();
+      document.getElementById('tbtn').style.display='none';
     }
   });
-    // Declined notification
-    if(msg.targetSerial&&msg.targetSerial.startsWith('grpinvno_')&&msg.message.startsWith('__grp_declined__:')){
-      const groupId=msg.targetSerial.replace('grpinvno_','');
-      if(myGroups[groupId]){
-        try{
-          const info=JSON.parse(msg.message.replace('__grp_declined__:',''));
-          if(myGroups[groupId].invited) myGroups[groupId].invited=myGroups[groupId].invited.filter(m=>m.serialId!==info.serialId);
-          saveMyGroups(); changed=true;
-        }catch(e){}
-      }
-    }
-  });
-  if(changed) updateCL();
-}
-
-function acceptGrpInv(groupId){
-  const inv=pendGrpInv[groupId]; if(!inv) return;
-  myGroups[groupId]={id:groupId,name:inv.name,pic:inv.pic,adminSid:inv.adminSid,adminName:inv.adminName,members:[{serialId:sid,name:uname,avatar:uav}]};
-  saveMyGroups(); delete pendGrpInv[groupId]; savePendGrpInv();
-  // Notify admin
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname,message:'__grp_joined__:'+JSON.stringify({serialId:sid,name:uname,avatar:uav}),
-    deviceId:did,serialId:sid,avatar:uav,targetSerial:GINVOK+groupId
-  })}).catch(()=>{});
-  // Welcome message
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname,message:'Assalamu alaikum wa rahmatullahi wa barakatuh! I am new in \''+inv.name+'\''+'!',
-    deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId
-  })}).catch(()=>{});
-  updateCL(); selectC(groupId,'ggroup');
-  document.getElementById('ginvmod').classList.add('hidden');
-}
-
-function declineGrpInv(groupId){
-  const inv=pendGrpInv[groupId];
-  if(inv){
-    // Notify admin that this user declined
-    fetch(API,{method:'POST',body:JSON.stringify({
-      name:uname,message:'__grp_declined__:'+JSON.stringify({serialId:sid}),
-      deviceId:did,serialId:sid,avatar:uav,
-      targetSerial:'grpinvno_'+groupId
-    })}).catch(()=>{});
-  }
-  delete pendGrpInv[groupId]; savePendGrpInv(); updateCL();
-  document.getElementById('ginvmod').classList.add('hidden');
-}
-
-function openGrpInvModal(){
-  const list=document.getElementById('ginv-list'); list.innerHTML='';
-  const invs=Object.values(pendGrpInv);
-  if(!invs.length){list.innerHTML='<p style="color:var(--text-time)">No pending invitations.</p>';document.getElementById('ginvmod').classList.remove('hidden');return;}
-  invs.forEach(inv=>{
-    const div=document.createElement('div'); div.className='grp-inv-item';
-    div.innerHTML=`<div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
-      <img src="${escH(inv.pic||'bb.png')}" style="width:38px;height:38px;border-radius:50%;object-fit:cover" onerror="this.src='bb.png'">
-      <div><div class="grp-inv-name">${escH(inv.name)}</div>
-      <div class="grp-inv-from">Invited by ${escH(inv.adminName)} (#${escH(inv.adminSid)})</div>
-      ${inv.desc?`<div style='font-size:11px;color:var(--text-time);font-style:italic;margin-bottom:4px'>${escH(inv.desc)}</div>`:''}</div></div>
-      <div class="rbtns">
-        <button class="bok" onclick="acceptGrpInv('${inv.groupId}')">Accept</button>
-        <button class="bno" onclick="declineGrpInv('${inv.groupId}')">Decline</button>
-      </div>`;
-    list.appendChild(div);
-  });
-  document.getElementById('ginvmod').classList.remove('hidden');
-}
-
-function openGrpInfo(groupId){
-  const g=myGroups[groupId]; if(!g) return;
-  const body=document.getElementById('ginfo-body'); body.innerHTML='';
-  const ftr=document.getElementById('ginfo-ftr'); ftr.innerHTML='';
-  const invitedList=g.invited||[];
-  const invitedSection=g.adminSid===sid&&invitedList.length?
-    `<p style="font-weight:600;font-size:12px;color:var(--text-time);margin:10px 0 5px">INVITED (pending)</p>
-    ${invitedList.map(m=>`<div class="tli" style="opacity:.7">
-      <div class="tli-inf"><div class="tli-n">${escH(m.name)}</div><div class="tli-id">#${m.serialId}</div></div>
-    </div>`).join('')}`:'';  body.innerHTML=`<div class="grp-info-bar">
-    <img src="${escH(g.pic||'bb.png')}" onerror="this.src='bb.png'">
-    <div class="grp-info-text">
-      <div class="grp-info-name">${escH(g.name)}</div>
-      ${g.desc?`<div style='font-size:11px;color:var(--text-time);margin-top:2px'>${escH(g.desc)}</div>`:''}
-      <div class="grp-info-members">${(g.members||[]).length} members &bull; <span style='font-size:10px;color:var(--text-time)'>Group ID: ${g.id}</span></div>
-    </div>
-  </div>
-  <p style="font-weight:600;font-size:12px;color:var(--text-time);margin-bottom:7px">MEMBERS</p>
-  ${(g.members||[]).map(m=>`<div class="tli">
-    <div class="tli-inf"><div class="tli-n">${escH(m.name)}${m.serialId===g.adminSid?' <span class="grp-badge">Admin</span>':''}</div><div class="tli-id">#${m.serialId}</div></div>
-    ${(g.adminSid===sid&&m.serialId!==sid)?`<button class="tlrm" onclick="rmGrpMember('${groupId}','${m.serialId}')" title="Remove"><img src="kata.png" alt="X" onerror="this.parentNode.textContent='X'"></button>`:''}
-  </div>`).join('')}
-  ${invitedSection}`;
-  // Admin can add more members
-  if(g.adminSid===sid){
-    ftr.innerHTML=`<input id="ginfo-add-id" placeholder="Add member by ID" maxlength="4" style="flex:1">
-      <button class="bblue" style="flex:0;padding:9px 14px;border-radius:19px;font-weight:600;font-size:12px" onclick="addGrpMember('${groupId}')">Add</button>`;
-  } else {
-    ftr.innerHTML=`<button class="bcan" style="flex:1" onclick="leaveGroup('${groupId}')">Leave Group</button>`;
-  }
-  document.getElementById('ginfomod').classList.remove('hidden');
-}
-
-function addGrpMember(groupId){
-  const inp=document.getElementById('ginfo-add-id');
-  const t=inp.value.trim();
-  if(!/^\d{4}$/.test(t)){alert('Enter valid 4-digit ID');return;}
-  const g=myGroups[groupId]; if(!g) return;
-  if(g.members.find(m=>m.serialId===t)){alert('Already a member');return;}
-  const related=msgs.filter(m=>m.serialId===t);
-  const nm=related.length?related[related.length-1].name:'User #'+t;
-  const av=related.length&&related[related.length-1].avatar?related[related.length-1].avatar:'bb.png';
-  if(!g.invited) g.invited=[];
-  g.invited.push({serialId:t,name:nm,avatar:av}); saveMyGroups();
-  sendGrpInvite(groupId,g.name,g.desc||'',g.pic,t);
-  inp.value=''; openGrpInfo(groupId);
-}
-
-function rmGrpMember(groupId,memberSid){
-  const g=myGroups[groupId]; if(!g) return;
-  g.members=g.members.filter(m=>m.serialId!==memberSid); saveMyGroups();
-  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_removed__:'+memberSid,deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(()=>{});
-  openGrpInfo(groupId); updateCL();
-}
-
-function leaveGroup(groupId){
-  if(!confirm('Leave this group?')) return;
-  delete myGroups[groupId]; saveMyGroups();
-  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:uname+' left the group.',deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(()=>{});
-  selC=null; document.getElementById('cchdr').classList.add('hidden'); document.getElementById('box').innerHTML='<div class="empty">Select a chat</div>';
-  document.getElementById('ginfomod').classList.add('hidden'); updateCL();
 }
 
 // ─── INIT ─────────────────────────────────────────────────────
@@ -816,10 +538,15 @@ function init(){
   isAdm=ADMINS.includes(did);
   try{ucon=JSON.parse(localStorage.getItem('chatContacts')||'{}')}catch(e){ucon={}}
   try{pendIn=JSON.parse(localStorage.getItem('pendingIn')||'{}')}catch(e){pendIn={}}
-  loadMyGroups(); loadPendGrpInv();
 
-  document.getElementById('sidebar').classList.remove('hidden');
-  if(isAdm){ document.getElementById('admbadge').style.display='block'; document.getElementById('tlbtn').style.display='block'; }
+  if(isAdm){
+    document.getElementById('admbadge').style.display='block';
+    document.getElementById('sidebar').classList.remove('hidden');
+    document.getElementById('tlbtn').style.display='block';
+  } else if(Object.keys(ucon).length||Object.keys(pendIn).length){
+    document.getElementById('sidebar').classList.remove('hidden');
+  }
+
   if(!uname){
     document.getElementById('nsetup').classList.remove('hidden');
     document.getElementById('cinput').classList.add('hidden');
@@ -829,6 +556,7 @@ function init(){
     document.getElementById('cinput').classList.remove('hidden');
     updateBadge();
   }
+
   if(hasTanag()){ document.getElementById('tbtn').style.display='block'; buildKB(); }
 }
 
@@ -837,12 +565,20 @@ function toggleTheme(){
   const h=document.documentElement,b=document.getElementById('thbtn');
   if(isDk){h.removeAttribute('data-theme');b.textContent='Dark';localStorage.setItem('theme','light');isDk=false;}
   else{h.setAttribute('data-theme','dark');b.textContent='Light';localStorage.setItem('theme','dark');isDk=true;}
-  refreshKBImgs(); if(tMode) renderTD();
-  document.querySelectorAll('.m img[alt]').forEach(img=>{ if(/^[a-z]$/.test(img.alt)) img.src=imgSrc(img.alt); });
+  refreshKBImgs();
+  if(tMode) renderTD();
+  // re-render tanag in all visible messages
+  document.querySelectorAll('.m').forEach(el=>{
+    // re-render by scanning for tanag img alts
+    el.querySelectorAll('img[alt]').forEach(img=>{
+      if(/^[a-z]$/.test(img.alt)) img.src=imgSrc(img.alt);
+    });
+  });
 }
 if(localStorage.getItem('theme')==='dark'){
   document.documentElement.setAttribute('data-theme','dark');
-  document.getElementById('thbtn').textContent='Light'; isDk=true;
+  document.getElementById('thbtn').textContent='Light';
+  isDk=true;
 }
 
 // ─── BADGE ────────────────────────────────────────────────────
@@ -877,8 +613,7 @@ function saveName(){
   hb(); regUser(); loadMsgs();
 }
 function regUser(){
-  // Register in sheet immediately so others can find this user by ID
-  fetch(API,{method:'POST',body:JSON.stringify({register:true,deviceId:did,serialId:sid,name:uname,avatar:uav,saveToSheet:true})}).catch(()=>{});
+  fetch(API,{method:'POST',body:JSON.stringify({register:true,deviceId:did,serialId:sid,name:uname,avatar:uav})}).catch(()=>{});
 }
 
 // ─── EDIT PROFILE ─────────────────────────────────────────────
@@ -919,50 +654,77 @@ function startNewChat(){
   if(t===sid){alert('You cannot chat with yourself!');return;}
   if(ucon[t]){selectC(t,'user');return;}
   fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname,message:'Chat request from '+uname+' (#'+sid+')',
-    deviceId:did,serialId:sid,avatar:uav,targetSerial:REQ+t
-  })}).then(r=>r.json()).then(res=>{
-    if(res.status==='success') alert('Request sent to #'+t+'! Waiting for acceptance.');
-    else alert('Failed to send request.');
+    name:uname, message:'Chat request from '+uname+' (#'+sid+')',
+    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQ+t
+  })})
+  .then(r=>r.json())
+  .then(res=>{
+    if(res.status==='success'){
+      alert('Request sent to #'+t+'! Waiting for acceptance.');
+      document.getElementById('sidebar').classList.remove('hidden');
+    } else alert('Failed to send request.');
   }).catch(()=>alert('Network error.'));
 }
-function acceptReq(from,fromName,fromAv){
-  ucon[from]={serialId:from,name:fromName,avatar:fromAv||'bb.png'};
+
+function acceptReq(from, fromName, fromAv){
+  ucon[from]={serialId:from, name:fromName, avatar:fromAv||'bb.png'};
   localStorage.setItem('chatContacts',JSON.stringify(ucon));
   delete pendIn[from]; localStorage.setItem('pendingIn',JSON.stringify(pendIn));
-  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:uname+' (#'+sid+') accepted your request!',deviceId:did,serialId:sid,avatar:uav,targetSerial:REQOK+from})}).catch(()=>{});
+  fetch(API,{method:'POST',body:JSON.stringify({
+    name:uname, message:uname+' (#'+sid+') accepted your request!',
+    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQOK+from
+  })}).catch(()=>{});
   updateCL(); selectC(from,'user');
 }
+
 function declineReq(from){
   delete pendIn[from]; localStorage.setItem('pendingIn',JSON.stringify(pendIn));
-  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'Request declined.',deviceId:did,serialId:sid,avatar:uav,targetSerial:REQNO+from})}).catch(()=>{});
+  fetch(API,{method:'POST',body:JSON.stringify({
+    name:uname, message:'Request declined.',
+    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQNO+from
+  })}).catch(()=>{});
   updateCL();
 }
+
+// CRITICAL FIX: processReqs runs on every loadMsgs call.
+// We track which request message IDs we've already processed so we don't re-show them.
+const seenReqs=new Set(JSON.parse(localStorage.getItem('seenReqs')||'[]'));
+
 function procReqs(messages){
   let changed=false;
   messages.forEach(msg=>{
+    // Friend request addressed to me
     if(msg.targetSerial===REQ+sid){
       const f=msg.serialId;
-      if(f&&f!==sid&&!ucon[f]&&!pendIn[f]){
-        pendIn[f]={name:msg.name,avatar:msg.avatar||'bb.png',serialId:f};
-        localStorage.setItem('pendingIn',JSON.stringify(pendIn)); changed=true;
+      if(f && f!==sid && !ucon[f] && !pendIn[f]){
+        pendIn[f]={name:msg.name, avatar:msg.avatar||'bb.png', serialId:f};
+        localStorage.setItem('pendingIn',JSON.stringify(pendIn));
+        document.getElementById('sidebar').classList.remove('hidden');
+        changed=true;
       }
     }
+    // My request was accepted
     if(msg.targetSerial===REQOK+sid){
       const f=msg.serialId;
-      if(f&&!ucon[f]){ ucon[f]={serialId:f,name:msg.name,avatar:msg.avatar||'bb.png'}; localStorage.setItem('chatContacts',JSON.stringify(ucon)); changed=true; }
+      if(f && !ucon[f]){
+        ucon[f]={serialId:f, name:msg.name, avatar:msg.avatar||'bb.png'};
+        localStorage.setItem('chatContacts',JSON.stringify(ucon));
+        changed=true;
+      }
     }
   });
   if(changed) updateCL();
 }
 
-// ─── TIYUHUI GROUP (special) ──────────────────────────────────
+// ─── GROUP CHAT ───────────────────────────────────────────────
 function isGrpMem(){ return isAdm||!!localStorage.getItem('grpReg_tiyuhui'); }
+
 function openGrp(){
   if(!localStorage.getItem('grpReg_tiyuhui')) document.getElementById('grpmod').classList.remove('hidden');
   else selectC(GRP,'group');
 }
 function closeGrp(){ document.getElementById('grpmod').classList.add('hidden'); }
+
 function saveGrp(){
   const n=document.getElementById('gn').value.trim();
   const e=document.getElementById('ge').value.trim();
@@ -971,25 +733,34 @@ function saveGrp(){
   if(!e){alert('Email required');return;}
   if(!f){alert('Flat number required');return;}
   if(!/\S+@\S+\.\S+/.test(e)){alert('Invalid email');return;}
+
   localStorage.setItem('grpReg_tiyuhui',JSON.stringify({name:n,email:e,flat:f,joinedAt:new Date().toISOString()}));
+
+  // Save to Google Sheet
   fetch(API,{method:'POST',body:JSON.stringify({groupReg:true,name:n,email:e,flat:f,serialId:sid})}).catch(()=>{});
+
+  // Join message in Bengali
   const joinMsg='আসসালামু আলাইকুম! আমি Flat '+f+' এর '+n+' অনলাইন টিয়ুহুই গ্রুপের চ্যাটে চলে এসেছি!';
-  fetch(API,{method:'POST',body:JSON.stringify({name:n,message:joinMsg,deviceId:did,serialId:sid,avatar:uav,targetSerial:GRP})}).catch(()=>{});
+  fetch(API,{method:'POST',body:JSON.stringify({
+    name:n, message:joinMsg, deviceId:did, serialId:sid, avatar:uav, targetSerial:GRP
+  })}).catch(()=>{});
+
   closeGrp();
   if(hasTanag()){ document.getElementById('tbtn').style.display='block'; buildKB(); }
-  selectC(GRP,'group'); alert('Welcome to the group!');
+  selectC(GRP,'group');
+  alert('Welcome to the group!');
 }
 
 // ─── CONTACT LIST ─────────────────────────────────────────────
 function updateCL(){
   const cl=document.getElementById('cl');
   const contacts=[];
-  const pendInvCount=Object.keys(pendGrpInv).length;
 
   if(isAdm){
     const um={};
     msgs.forEach(msg=>{
       if(!ADMINS.includes(msg.deviceId)&&msg.serialId){
+        // Skip system/meta messages in contact list preview
         if(msg.message&&msg.message.startsWith('__')) return;
         if(!um[msg.serialId]) um[msg.serialId]={id:msg.serialId,type:'user',serialId:msg.serialId,name:msg.name,avatar:msg.avatar||'bb.png',lastMsg:msg.message,ts:msg.timestamp};
         else if(new Date(msg.timestamp)>new Date(um[msg.serialId].ts)){um[msg.serialId].lastMsg=msg.message;um[msg.serialId].ts=msg.timestamp;}
@@ -1000,7 +771,7 @@ function updateCL(){
     const lg=gm[gm.length-1];
     contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:lg?lg.message:'Group chat',ts:lg?lg.timestamp:new Date().toISOString()});
   } else {
-    // Pending friend requests
+    // Pending requests at top
     Object.values(pendIn).forEach(r=>{
       contacts.push({id:r.serialId,type:'request',serialId:r.serialId,name:r.name,avatar:r.avatar||'bb.png',lastMsg:'Wants to chat with you',ts:new Date().toISOString(),pend:true});
     });
@@ -1010,32 +781,20 @@ function updateCL(){
     contacts.push({id:'admin',type:'admin',name:'Admin Support',avatar:'bb.png',lastMsg:la?la.message:'Start chatting',ts:la?la.timestamp:new Date().toISOString()});
     // Friends
     Object.keys(ucon).forEach(s=>{
-      const pm=msgs.filter(m=>((m.serialId===sid&&m.targetSerial===s)||(m.serialId===s&&m.targetSerial===sid))&&!(m.message||'').startsWith('__'));
+      const pm=msgs.filter(m=>(m.serialId===sid&&m.targetSerial===s)||(m.serialId===s&&m.targetSerial===sid));
       const lm=pm[pm.length-1];
       contacts.push({id:s,type:'user',serialId:s,name:ucon[s].name,avatar:ucon[s].avatar||'bb.png',lastMsg:lm?lm.message:'No messages yet',ts:lm?lm.timestamp:new Date().toISOString()});
     });
-    // Tiyuhui group (members only)
+    // Group (only for members)
     if(isGrpMem()){
-      const gm=msgs.filter(m=>m.targetSerial===GRP&&!m.message.startsWith('__'));
+      const gm=msgs.filter(m=>m.targetSerial===GRP);
       const lg=gm[gm.length-1];
-      const tPreview=lg?(lg.serialId===sid?'You: '+lg.message:lg.name+': '+lg.message):'Group chat';
-      contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:tPreview,ts:lg?lg.timestamp:new Date().toISOString()});
-    }
-    // General groups (user is member)
-    Object.values(myGroups).forEach(g=>{
-      const gm=msgs.filter(m=>m.targetSerial===g.id&&!m.message.startsWith('__'));
-      const lg=gm[gm.length-1];
-      const grpPreview=lg?(lg.serialId===sid?'You: '+lg.message:lg.name+': '+lg.message):'Group chat';
-      contacts.push({id:g.id,type:'ggroup',name:g.name,avatar:g.pic||'bb.png',lastMsg:grpPreview,ts:lg?lg.timestamp:new Date().toISOString(),isGrp:true});
-    });
-    // Group invitation notification
-    if(pendInvCount>0){
-      contacts.push({id:'__grpinv__',type:'grpinv',name:'Group Invitations',avatar:'bb.png',lastMsg:pendInvCount+' pending invitation'+(pendInvCount>1?'s':''),ts:new Date().toISOString(),pend:true});
+      contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:lg?lg.message:'Group chat',ts:lg?lg.timestamp:new Date().toISOString()});
     }
   }
 
   if(!contacts.length){cl.innerHTML='<div id="ldg">No contacts yet</div>';return;}
-  contacts.sort((a,b)=>{if(a.pend&&!b.pend)return -1;if(!a.pend&&b.pend)return 1;return new Date(b.ts)-new Date(a.ts);});
+  contacts.sort((a,b)=>{ if(a.pend&&!b.pend) return -1; if(!a.pend&&b.pend) return 1; return new Date(b.ts)-new Date(a.ts); });
   cl.innerHTML='';
   contacts.forEach(c=>{
     const div=document.createElement('div'); div.className='ci';
@@ -1044,9 +803,8 @@ function updateCL(){
     const onl=c.type==='user'&&online[c.serialId]&&(Date.now()-online[c.serialId].lastSeen<60000);
     const ser=c.serialId?`<span class="cser">#${c.serialId}</span>`:'';
     const dotHtml=c.type==='user'?`<span class="dot ${onl?'on':'off'}"></span>`:'';
-    const grpBadge=c.isGrp?`<span class="grp-badge">Group</span>`:'';
 
-    if(c.pend&&c.type==='request'){
+    if(c.pend){
       div.innerHTML=`<img src="${c.avatar||'bb.png'}" class="cav" onerror="this.src='bb.png'">
         <div class="ci-info">
           <div class="ci-name">${dotHtml}${escH(c.name)}${ser}</div>
@@ -1057,25 +815,13 @@ function updateCL(){
           </div>
         </div>`;
       div.onclick=()=>{};
-    } else if(c.type==='grpinv'){
-      // Show pic of first pending invitation
-      const firstInv=Object.values(pendGrpInv)[0];
-      const invPic=firstInv&&firstInv.pic&&firstInv.pic!=='bb.png'?firstInv.pic:'bb.png';
-      div.innerHTML=`<img src="${invPic}" class="cav" onerror="this.src='bb.png'">
-        <div class="ci-info">
-          <div class="ci-name">Group Invitations</div>
-          <div class="ci-prev">${escH(c.lastMsg)}</div>
-        </div>`;
-      div.onclick=()=>openGrpInvModal();
     } else {
       div.innerHTML=`<img src="${c.avatar||'bb.png'}" class="cav" onerror="this.src='bb.png'">
         <div class="ci-info">
-          <div class="ci-name">${dotHtml}${escH(c.name)}${ser}${grpBadge}</div>
-          <div class="ci-prev">${c.lastMsg?escH(c.lastMsg.substring(0,40)):''}${c.lastMsg&&c.lastMsg.length>40?'...':''}</div>
+          <div class="ci-name">${dotHtml}${escH(c.name)}${ser}</div>
+          <div class="ci-prev">${c.lastMsg?escH(c.lastMsg.substring(0,40))+'...':''}</div>
         </div>`;
-      if(c.type==='group') div.onclick=()=>openGrp();
-      else if(c.type==='ggroup') div.onclick=()=>selectC(c.id,'ggroup');
-      else div.onclick=()=>selectC(c.id,c.type);
+      div.onclick=()=>{ if(c.type==='group') openGrp(); else selectC(c.id,c.type); };
     }
     cl.appendChild(div);
   });
@@ -1083,76 +829,58 @@ function updateCL(){
 
 // ─── CHAT DISPLAY ─────────────────────────────────────────────
 function selectC(id,type){
-  selC={id,type}; updateCCH(id,type); displayChat(id,type); updateCL();
-  // Update URL hash so group ID appears in address bar
-  history.replaceState(null,'',location.pathname+'#'+id);
+  selC={id,type};
+  updateCCH(id,type); displayChat(id,type); updateCL();
   if(window.innerWidth<=768){
     document.getElementById('sidebar').classList.add('hm');
     document.getElementById('chat-area').classList.remove('hm');
   }
 }
+
 function updateCCH(id,type){
   const h=document.getElementById('cchdr');
   const av=document.getElementById('cc-av');
   const nm=document.getElementById('cc-name');
   const st=document.getElementById('cc-status');
-  const ac=document.getElementById('cc-actions');
-  h.classList.remove('hidden'); ac.innerHTML='';
+  h.classList.remove('hidden');
   if(type==='admin'){av.src='bb.png';nm.textContent='Admin Support';st.textContent='Official support channel';}
   else if(type==='group'){av.src='bb.png';nm.textContent='Tiyuhui Group';st.textContent='Group chat';}
-  else if(type==='ggroup'){
-    const g=myGroups[id];
-    av.src=(g&&g.pic)||'bb.png'; nm.textContent=(g&&g.name)||'Group';
-    st.textContent=(g&&g.members)?g.members.length+' members':'Group chat';
-    // Info button
-    const btn=document.createElement('button'); btn.className='hbtn'; btn.textContent='Info';
-    btn.onclick=()=>openGrpInfo(id); ac.appendChild(btn);
-  }
   else if(type==='user'&&ucon[id]){
     const c=ucon[id]; av.src=c.avatar||'bb.png';
     nm.textContent=c.name+' #'+id;
+    // Use 60s window for online check
     const onl=online[id]&&(Date.now()-online[id].lastSeen<60000);
-    if(onl){
-      st.textContent='Online';
-    } else {
-      const ls=userLastSeen[id];
-      const lsText=ls&&ls.lastSeen?fmtLastSeen(ls.lastSeen):null;
-      st.textContent=lsText||'Offline';
-    }
-  }
-  else if(isAdm){
-    nm.textContent='User #'+id; av.src='bb.png';
-    const onl=online[id]&&(Date.now()-online[id].lastSeen<60000);
-    if(onl){ st.textContent='Online'; }
-    else {
-      const ls=userLastSeen[id];
-      st.textContent=ls&&ls.lastSeen?fmtLastSeen(ls.lastSeen):'';
-    }
-  }
+    st.textContent=onl?'Online':'Offline';
+  } else if(isAdm){nm.textContent='User #'+id;st.textContent='';av.src='bb.png';}
   av.onerror=()=>av.src='bb.png';
 }
+
 function displayChat(cId,cType){
   const box=document.getElementById('box'); box.innerHTML='';
   let f;
   if(cType==='group') f=msgs.filter(m=>m.targetSerial===GRP);
-  else if(cType==='ggroup') f=msgs.filter(m=>m.targetSerial===cId);
   else if(isAdm&&cType==='user') f=msgs.filter(m=>(m.serialId===cId&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===cId)));
   else if(!isAdm&&cType==='admin') f=msgs.filter(m=>(m.serialId===sid&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===sid)));
   else if(cType==='user') f=msgs.filter(m=>(m.serialId===sid&&m.targetSerial===cId)||(m.serialId===cId&&m.targetSerial===sid));
   else{box.innerHTML='<div class="empty">Select a contact to start chatting</div>';return;}
-  f=(f||[]).filter(m=>!(m.message||'').startsWith('__'));
+  // Filter out system meta-messages
+  f=(f||[]).filter(m=>!m.message.startsWith('__'));
   if(!f.length) box.innerHTML='<div class="empty">No messages yet. Start chatting!</div>';
   else f.forEach(m=>appendMsg(m.name,m.message,m.timestamp,m.pic,m.serialId,m.deviceId,m.avatar));
   box.scrollTop=box.scrollHeight;
 }
+
 function appendMsg(name,msg,ts,pic,mSer,mDev,avatar){
   const box=document.getElementById('box');
   const wrap=document.createElement('div'); wrap.className='mw';
   const mine=isAdm?(ADMINS.includes(mDev)&&mDev===did):(mSer===sid);
   wrap.classList.add(mine?'me':'them');
+
+  // FIX: always show avatar — mine uses uav, others use the message's avatar field
   const av=document.createElement('img'); av.className='mav';
-  av.src=mine?uav:(avatar&&avatar!=='bb.png'?avatar:'bb.png');
+  av.src=mine ? uav : (avatar&&avatar!=='bb.png' ? avatar : 'bb.png');
   av.onerror=()=>av.src='bb.png';
+
   const div=document.createElement('div'); div.className='c';
   const time=ts?new Date(ts).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}):new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
   div.innerHTML=
@@ -1162,53 +890,38 @@ function appendMsg(name,msg,ts,pic,mSer,mDev,avatar){
     `<div class="t">${time}</div>`;
   wrap.appendChild(av); wrap.appendChild(div); box.appendChild(wrap);
 }
-function escH(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 
-// Format last seen time like WhatsApp
-function fmtLastSeen(isoStr){
-  if(!isoStr) return null;
-  const d=new Date(isoStr); const now=new Date();
-  const diff=now-d; // ms
-  if(diff<60000) return 'last seen just now';
-  if(diff<3600000){
-    const m=Math.floor(diff/60000);
-    return 'last seen '+m+' minute'+(m>1?'s':'')+' ago';
-  }
-  const today=new Date(); today.setHours(0,0,0,0);
-  const yesterday=new Date(today); yesterday.setDate(yesterday.getDate()-1);
-  if(d>=today){
-    return 'last seen today at '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  }
-  if(d>=yesterday){
-    return 'last seen yesterday at '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  }
-  return 'last seen '+d.toLocaleDateString('en-US',{day:'numeric',month:'short'})+' at '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-}
+function escH(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 
 // ─── SEND ─────────────────────────────────────────────────────
 function send(){
   if(sending) return;
   if(!uname){alert('Please set your name first');return;}
   if(!selC){alert('Please select a contact first');return;}
+
   let msgText;
-  if(tMode){ if(!tbuf.length) return; msgText=tbufToToken(); }
-  else{
-    msgText=document.getElementById('m').value.trim(); if(!msgText) return;
+  if(tMode){
+    if(!tbuf.length) return;
+    msgText=tbufToToken();
+  } else {
+    msgText=document.getElementById('m').value.trim();
+    if(!msgText) return;
     if(msgText.toLowerCase()==='tanag.lekhi'){document.getElementById('m').value='';openGrp();return;}
   }
+
   sending=true;
-  let ts;
-  if(selC.type==='admin') ts='admin';
-  else if(selC.type==='group') ts=GRP;
-  else if(selC.type==='ggroup') ts=selC.id;
-  else ts=selC.id;
+  const ts=selC.type==='admin'?'admin':selC.type==='group'?GRP:selC.id;
   const payload={name:uname,message:msgText,deviceId:did,serialId:sid,avatar:uav,targetSerial:ts};
+
   appendMsg(uname,msgText,new Date().toISOString(),'',sid,did,uav);
   const box=document.getElementById('box'); box.scrollTop=box.scrollHeight;
+
   fetch(API,{method:'POST',body:JSON.stringify(payload)})
   .then(r=>r.json()).then(res=>{
-    if(res.status==='success'){ if(tMode) tClear(); else document.getElementById('m').value=''; loadMsgs(true); }
-    else{ alert('Failed to send: '+(res.message||'')); box.lastChild&&box.lastChild.remove(); }
+    if(res.status==='success'){
+      if(tMode) tClear(); else document.getElementById('m').value='';
+      loadMsgs(true);
+    } else { alert('Failed to send: '+(res.message||'')); box.lastChild&&box.lastChild.remove(); }
     sending=false;
   }).catch(err=>{ console.error(err); alert('Failed to send.'); box.lastChild&&box.lastChild.remove(); sending=false; });
 }
@@ -1218,26 +931,43 @@ function loadMsgs(auto=false){
   fetch(API+'?deviceId='+did+'&serialId='+sid+'&t='+Date.now())
   .then(r=>{ if(!r.ok) throw 0; return r.json(); })
   .then(d=>{
-    if(!d||!Array.isArray(d.comments)){ msgs=[]; updateCL(); return; }
+    if(!d||!Array.isArray(d.comments)){
+      msgs=[]; updateCL();
+      if(!selC) document.getElementById('box').innerHTML='<div class="empty">No messages yet.</div>';
+      return;
+    }
     msgs=d.comments;
+
+    // Update online users — use 60s window
     if(d.onlineUsers) online=d.onlineUsers;
-    if(d.userLastSeen) userLastSeen=d.userLastSeen;
+
     msgs.forEach(m=>{
-      if(m.serialId&&ucon[m.serialId]){ ucon[m.serialId].name=m.name; if(m.avatar&&m.avatar!=='bb.png') ucon[m.serialId].avatar=m.avatar; }
+      if(m.serialId&&ucon[m.serialId]){
+        ucon[m.serialId].name=m.name;
+        if(m.avatar&&m.avatar!=='bb.png') ucon[m.serialId].avatar=m.avatar;
+      }
     });
     localStorage.setItem('chatContacts',JSON.stringify(ucon));
-    procReqs(msgs); procTanag(msgs); procGrpInvites(msgs); updateCL();
+
+    procReqs(msgs);
+    procTanag(msgs);
+    updateCL();
+
     if(selC) displayChat(selC.id,selC.type);
     else if(!isAdm&&!Object.keys(ucon).length&&!Object.keys(pendIn).length) selectC('admin','admin');
   }).catch(err=>{ console.error(err); if(!auto) document.getElementById('box').innerHTML='<div id="ldg">Failed to load. Refresh.</div>'; });
 }
 
 // ─── HEARTBEAT ────────────────────────────────────────────────
+// Send heartbeat every 20s; server caches for 60s.
+// This means online = seen within last 60s.
 function hb(){
   if(!uname||!sid) return;
   fetch(API,{method:'POST',body:JSON.stringify({heartbeat:true,serialId:sid,name:uname,avatar:uav})}).catch(()=>{});
 }
 setInterval(()=>{ if(uname) hb(); }, 20000);
+
+// Poll every 8s (no more 5s to reduce load)
 setInterval(()=>{ if(!sending) loadMsgs(true); }, 8000);
 
 function showSidebar(){
