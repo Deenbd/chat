@@ -10,8 +10,6 @@
 :root{--bg-main:#e3f2fd;--bg-chat:#fff;--bg-user:#bbdefb;--bg-other:#fff;--text-main:#000;--text-time:#667781;--border:#e1f5fe;--input-bg:#f0f4f8;--header-bg:#1976d2;--sidebar-bg:#fff;--hover-bg:#e3f2fd}
 [data-theme="dark"]{--bg-main:#0a1929;--bg-chat:#0d1b2a;--bg-user:#1565c0;--bg-other:#1e3a5f;--text-main:#e3f2fd;--text-time:#90caf9;--border:#1e3a5f;--input-bg:#1e3a5f;--header-bg:#0d47a1;--sidebar-bg:#0d1b2a;--hover-bg:#1e3a5f}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg-main);height:100vh;display:flex;flex-direction:column;overflow:hidden}
-
-/* HEADER */
 #header{background:var(--header-bg);color:#fff;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.2);z-index:10;gap:6px;flex-wrap:wrap}
 #header h3{font-size:16px;font-weight:600}
 .header-right{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
@@ -23,11 +21,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .ubadge:hover{background:rgba(255,255,255,.27)}
 .uav{width:25px;height:25px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3)}
 .admbadge{background:#ff9800;padding:4px 9px;border-radius:11px;font-size:11px;font-weight:700}
-
-/* LAYOUT */
 .main-container{display:flex;flex:1;overflow:hidden}
 #sidebar{width:300px;background:var(--sidebar-bg);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.sidebar-header{padding:12px 14px;background:var(--header-bg);color:#fff;font-weight:600;font-size:14px}
+.sidebar-header{padding:10px 12px;background:var(--header-bg);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-shrink:0}
+.sidebar-header span{font-weight:600;font-size:14px}
+.sidebar-actions{display:flex;gap:5px}
+.sdbtn{background:rgba(255,255,255,.18);color:#fff;border:none;padding:5px 10px;border-radius:14px;cursor:pointer;font-size:11px;font-weight:600;transition:background .15s;white-space:nowrap}
+.sdbtn:hover{background:rgba(255,255,255,.32)}
 .contact-list{flex:1;overflow-y:auto}
 .ci{padding:11px 13px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s;display:flex;gap:9px;align-items:flex-start}
 .ci:hover{background:var(--hover-bg)}.ci.active{background:var(--bg-user)}
@@ -45,8 +45,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .bok:hover{background:#388e3c}
 .bno{background:#e53935;color:#fff;padding:4px 11px;border-radius:15px;font-size:11px;font-weight:600;border:none;cursor:pointer}
 .bno:hover{background:#b71c1c}
-
-/* CHAT AREA */
+.grp-badge{background:#1976d2;color:#fff;font-size:9px;padding:2px 6px;border-radius:8px;font-weight:700}
 #chat-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
 #cchdr{background:var(--header-bg);color:#fff;padding:9px 5%;display:flex;align-items:center;gap:9px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
 #cchdr img{width:32px;height:32px;border-radius:50%;object-fit:cover}
@@ -64,8 +63,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .n{font-weight:600;color:#1976d2;font-size:11px;margin-bottom:2px}
 .m{line-height:1.45;color:var(--text-main);font-size:13px;word-wrap:break-word}
 .t{font-size:10px;color:var(--text-time);text-align:right;margin-top:3px;opacity:.65}
-
-/* INPUT */
 .inp{background:var(--bg-chat);padding:7px 5%;box-shadow:0 -2px 7px rgba(0,0,0,.08);flex-shrink:0}
 .name-setup{background:var(--bg-user);padding:16px;border-radius:10px;margin-bottom:7px;border:2px solid var(--header-bg)}
 .name-setup p{color:var(--text-main);margin-bottom:7px;font-size:13px;font-weight:500}
@@ -82,8 +79,6 @@ button{border:none;cursor:pointer;transition:background .18s}
 .sbtn{background:#1976d2;padding:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:42px;height:42px}
 .sbtn:hover{background:#1565c0}
 .mrow{display:flex;gap:6px;align-items:center}
-
-/* TANAG KEYBOARD */
 #tkb{background:var(--bg-chat);border-top:2px solid #6a1b9a;padding:5px 3px 3px;display:none}
 .tkr{display:flex;justify-content:center;gap:2px;margin-bottom:2px;flex-wrap:wrap}
 .tk{width:32px;height:32px;border:1.5px solid #9c27b0;border-radius:5px;background:var(--input-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:1px;transition:background .1s,transform .07s;position:relative;flex-shrink:0;font-size:11px;color:var(--text-main)}
@@ -97,15 +92,11 @@ button{border:none;cursor:pointer;transition:background .18s}
 .tk-spc:hover{background:#e1bee7}
 .tk-bs{width:44px;height:27px;background:var(--input-bg);border:1.5px solid #e53935;border-radius:5px;cursor:pointer;color:#e53935;font-size:13px;font-weight:600}
 .tk-bs:hover{background:#ffebee}
-/* tanag display */
 #tdisp{flex:1;padding:9px 13px;border-radius:24px;border:1px solid var(--border);background:var(--input-bg);color:var(--text-main);font-size:13px;min-height:40px;display:none;align-items:center;flex-wrap:wrap;gap:1px;cursor:text;position:relative;overflow:hidden}
 #tdisp[data-empty="true"]::before{content:attr(data-ph);color:var(--text-time);position:absolute;pointer-events:none}
-/* cursor blink in tanag display */
 #tdisp::after{content:'|';color:var(--text-main);animation:blink 1s step-end infinite;display:inline-block;margin-left:1px;font-weight:300}
 #tdisp[data-empty="true"]::after{display:none}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* MODALS */
 .ov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.73);display:flex;align-items:center;justify-content:center;z-index:2000}
 .mbox{background:var(--bg-chat);max-width:420px;width:93%;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.4);max-height:90vh;display:flex;flex-direction:column}
 .mhdr{background:#6a1b9a;color:#fff;padding:16px 19px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
@@ -119,10 +110,16 @@ button{border:none;cursor:pointer;transition:background .18s}
 .mbdy input{width:100%}
 .mftr{padding:11px 19px;display:flex;gap:7px;border-top:1px solid var(--border);flex-shrink:0}
 .mftr button{flex:1;padding:9px;border-radius:21px;font-weight:600;font-size:13px}
+.bblue{background:var(--header-bg);color:#fff;border:none;cursor:pointer}.bblue:hover{background:#1565c0}
 .bpurp{background:#6a1b9a;color:#fff}.bpurp:hover{background:#4a148c}
 .bcan{background:#e0e0e0;color:#333}.bcan:hover{background:#bdbdbd}
-
-/* HELP */
+.mem-list{max-height:130px;overflow-y:auto;border:1px solid var(--border);border-radius:7px;padding:4px;margin-top:4px}
+.mem-item{display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:5px}
+.mem-item input[type=checkbox]{accent-color:#1976d2;width:15px;height:15px;flex-shrink:0}
+.grp-info-bar{display:flex;gap:9px;align-items:center;margin-bottom:11px;padding:9px;background:var(--bg-user);border-radius:8px}
+.grp-info-bar img{width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.grp-info-name{font-weight:600;font-size:14px;color:var(--text-main)}
+.grp-info-sub{font-size:11px;color:var(--text-time);margin-top:2px}
 .hov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.73);display:flex;align-items:center;justify-content:center;z-index:1500}
 .hbox{background:var(--bg-chat);max-width:560px;width:93%;max-height:84vh;border-radius:13px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;flex-direction:column}
 .hhdr{background:var(--header-bg);color:#fff;padding:16px 19px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
@@ -134,8 +131,6 @@ button{border:none;cursor:pointer;transition:background .18s}
 .hser{background:var(--bg-user);padding:9px;border-radius:7px;margin:7px 0;font-size:15px;font-weight:600;text-align:center}
 .htip{background:#e3f2fd;color:#1565c0;padding:9px;border-radius:7px;margin-top:7px;font-size:12px}
 [data-theme="dark"] .htip{background:#1e3a5f;color:#90caf9}
-
-/* EDIT PROFILE */
 .epov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.73);display:flex;align-items:center;justify-content:center;z-index:1500}
 .epbox{background:var(--bg-chat);max-width:370px;width:93%;border-radius:13px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3)}
 .ephdr{background:var(--header-bg);color:#fff;padding:16px 19px;display:flex;justify-content:space-between;align-items:center}
@@ -149,23 +144,18 @@ button{border:none;cursor:pointer;transition:background .18s}
 .epbtns button{flex:1;padding:9px 14px;border-radius:21px;font-weight:500;font-size:13px}
 .bsave{background:var(--header-bg);color:#fff}.bsave:hover{background:#1565c0}
 .bcan2{background:#e0e0e0;color:#333}.bcan2:hover{background:#bdbdbd}
-
-/* TANAG WHITELIST */
 .tli{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border)}
 .tli:last-child{border-bottom:none}
 .tli-inf{flex:1}.tli-n{font-weight:600;font-size:13px;color:var(--text-main)}.tli-id{font-size:11px;color:var(--text-time)}
-.tlrm{background:none;border:none;cursor:pointer;padding:3px;border-radius:50%;transition:background .14s}
-.tlrm:hover{background:rgba(229,57,53,.1)}.tlrm img{width:20px;height:20px}
+.tlrm{background:none;border:none;cursor:pointer;color:#e53935;font-size:15px;font-weight:700;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tlrm:hover{background:rgba(229,57,53,.1)}
 .tladd{display:flex;gap:7px;margin-top:12px;align-items:center}
 .tladd input{flex:1}
 .tladdbtn{background:var(--header-bg);color:#fff;padding:8px 13px;border-radius:19px;font-weight:600;font-size:12px;white-space:nowrap;border:none;cursor:pointer}
 .tladdbtn:hover{background:#1565c0}
-
-/* MISC */
 .hidden{display:none!important}
 #ldg{text-align:center;color:var(--text-time);padding:18px;font-size:13px}
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-time);font-size:14px}
-
 @media(max-width:768px){
   #sidebar{width:100%;position:absolute;height:calc(100vh - 52px);z-index:5}
   #sidebar.hm{display:none}#chat-area.hm{display:none}
@@ -175,14 +165,12 @@ button{border:none;cursor:pointer;transition:background .18s}
 </style>
 </head>
 <body>
-
 <div id="header">
   <div style="display:flex;align-items:center;gap:7px">
     <button class="hbtn back-btn" onclick="showSidebar()">Back</button>
     <h3>Deen Chat</h3>
   </div>
   <div class="header-right">
-    <button class="hbtn acc" onclick="startNewChat()">New Chat</button>
     <button class="hbtn acc" onclick="showHelp()">Help</button>
     <button id="tbtn" class="hbtn" onclick="toggleTanag()" style="display:none">Tanag</button>
     <button id="tlbtn" class="hbtn" onclick="openTL()" style="display:none">Tanag List</button>
@@ -191,20 +179,25 @@ button{border:none;cursor:pointer;transition:background .18s}
     <button class="hbtn" id="thbtn" onclick="toggleTheme()">Dark</button>
   </div>
 </div>
-
 <div class="main-container">
   <div id="sidebar" class="hidden">
-    <div class="sidebar-header">Chats</div>
+    <div class="sidebar-header">
+      <span>Chats</span>
+      <div class="sidebar-actions">
+        <button class="sdbtn" onclick="startNewChat()">New Chat</button>
+        <button class="sdbtn" onclick="openNewGroup()">New Group</button>
+      </div>
+    </div>
     <div class="contact-list" id="cl"><div id="ldg">Loading...</div></div>
   </div>
   <div id="chat-area">
     <div id="cchdr" class="hidden">
       <img id="cc-av" src="bb.png" onerror="this.src='bb.png'">
-      <div><div id="cc-name"></div><div id="cc-status"></div></div>
+      <div style="flex:1"><div id="cc-name"></div><div id="cc-status"></div></div>
+      <div id="cc-actions"></div>
     </div>
     <div id="box"><div id="ldg">Loading messages...</div></div>
     <div class="inp">
-      <!-- name setup -->
       <div id="nsetup" class="name-setup hidden">
         <p>Welcome! Set up your profile to start chatting:</p>
         <label>Your Name *</label>
@@ -217,14 +210,11 @@ button{border:none;cursor:pointer;transition:background .18s}
         </div>
         <button onclick="saveName()">Continue</button>
       </div>
-      <!-- chat input -->
       <div id="cinput" class="hidden">
-        <!-- Tanag keyboard -->
         <div id="tkb">
           <div class="tkr" id="tkr1"></div>
           <div class="tkr" id="tkr2"></div>
           <div class="tkr" id="tkr3"></div>
-          <!-- punctuation row -->
           <div class="tkr" id="tkr4"></div>
           <div class="tkr">
             <button class="tk-spc" onclick="tSpc()">Space</button>
@@ -242,8 +232,7 @@ button{border:none;cursor:pointer;transition:background .18s}
     </div>
   </div>
 </div>
-
-<!-- GROUP REG MODAL -->
+<!-- TIYUHUI GROUP REG -->
 <div id="grpmod" class="ov hidden">
   <div class="mbox">
     <div class="mhdr"><h2>Tiyuhui Group</h2><button class="mcl" onclick="closeGrp()">x</button></div>
@@ -259,32 +248,71 @@ button{border:none;cursor:pointer;transition:background .18s}
     </div>
   </div>
 </div>
-
-<!-- HELP MODAL -->
+<!-- NEW GROUP -->
+<div id="ngmod" class="ov hidden">
+  <div class="mbox">
+    <div class="mhdr blue"><h2>Create New Group</h2><button class="mcl" onclick="closeNG()">x</button></div>
+    <div class="mbdy">
+      <label>Group Name *</label><input id="ng-name" placeholder="Group name" autocomplete="off">
+      <label>Description <span style="font-weight:400;color:var(--text-time);font-size:10px">(Optional)</span></label>
+      <input id="ng-desc" placeholder="What is this group about?" autocomplete="off">
+      <label>Group Picture URL <span style="font-weight:400;color:var(--text-time);font-size:10px">(Optional)</span></label>
+      <input id="ng-pic" placeholder="https://example.com/photo.jpg" autocomplete="off">
+      <label>Add Members</label>
+      <p style="font-size:11px;color:var(--text-time);margin-bottom:3px">Select from contacts:</p>
+      <div class="mem-list" id="ng-contacts"></div>
+      <div style="display:flex;gap:6px;margin-top:7px">
+        <input id="ng-sid" placeholder="Or add by 4-digit ID" maxlength="4" autocomplete="off" style="flex:1">
+        <button class="tladdbtn" onclick="ngAddById()">Add</button>
+      </div>
+      <p id="ng-added" style="font-size:11px;color:#1976d2;margin-top:4px"></p>
+    </div>
+    <div class="mftr">
+      <button class="bcan" onclick="closeNG()">Cancel</button>
+      <button class="bblue" onclick="createGroup()">Create Group</button>
+    </div>
+  </div>
+</div>
+<!-- GROUP INVITE -->
+<div id="ginvmod" class="ov hidden">
+  <div class="mbox">
+    <div class="mhdr blue"><h2>Group Invitations</h2><button class="mcl" onclick="document.getElementById('ginvmod').classList.add('hidden')">x</button></div>
+    <div class="mbdy" id="ginv-list"></div>
+  </div>
+</div>
+<!-- GROUP INFO -->
+<div id="ginfomod" class="ov hidden">
+  <div class="mbox">
+    <div class="mhdr blue"><h2>Group Info</h2><button class="mcl" onclick="document.getElementById('ginfomod').classList.add('hidden')">x</button></div>
+    <div class="mbdy" id="ginfo-body"></div>
+    <div class="mftr" id="ginfo-ftr"></div>
+  </div>
+</div>
+<!-- HELP -->
 <div id="helpmod" class="hov hidden">
   <div class="hbox">
     <div class="hhdr"><h2>How to Use Deen Chat</h2><button class="mcl" onclick="closeHelp()">x</button></div>
     <div class="hbdy">
-      <div class="hs">
-        <h3>Your Serial ID</h3>
+      <div class="hs"><h3>Your Serial ID</h3>
         <p>Every user gets a unique 4-digit Serial ID when they join.</p>
         <div class="hser">Your ID: <span id="hser">#0000</span></div>
         <ul><li>Find your ID next to your name (top-right)</li><li>Share it with others so they can message you</li><li>Your ID never changes</li></ul>
       </div>
-      <div class="hs">
-        <h3>Friend Request System</h3>
+      <div class="hs"><h3>Friend Request System</h3>
         <p>To start a private chat:</p>
-        <ul><li>Click <span class="hhl">New Chat</span> and enter the other person's 4-digit ID</li><li>A request is sent — they must accept it first</li><li>Once accepted, both sides can chat freely</li></ul>
+        <ul><li>Click <span class="hhl">New Chat</span> in the sidebar and enter the other person's 4-digit ID</li><li>A request is sent — they must accept it first</li><li>Once accepted, both sides can chat freely</li></ul>
         <div class="htip">Incoming requests appear at the top of your sidebar with an orange border.</div>
       </div>
+      <div class="hs"><h3>Groups</h3>
+        <ul><li>Click <span class="hhl">New Group</span> in the sidebar to create a group</li><li>Add members by contacts or Serial ID</li><li>Group admin can add/remove members</li></ul>
+      </div>
       <div class="hs"><h3>Profile Picture</h3><ul><li>Upload your photo to Imgur, Google Drive, etc.</li><li>Paste the direct image URL in profile settings</li></ul></div>
-      <div class="hs"><h3>Online Status</h3><ul><li>Green dot = Online</li><li>Gray dot = Offline</li></ul></div>
-      <div class="hs"><h3>Other Features</h3><ul><li><strong>Edit Profile:</strong> Click your profile badge (top-right)</li><li><strong>Dark Mode:</strong> Use the Dark/Light button</li><li><strong>Chat History:</strong> Automatically saved</li></ul></div>
+      <div class="hs"><h3>Online Status</h3><ul><li>Green dot = Online</li><li>Gray dot = Offline (shows last seen time)</li></ul></div>
+      <div class="hs"><h3>Other Features</h3><ul><li><strong>Edit Profile:</strong> Click your profile badge (top-right)</li><li><strong>Dark Mode:</strong> Use the Dark/Light button</li></ul></div>
       <div class="hs"><h3>Privacy Note</h3><p>Private chats are only between you and the other person.</p></div>
     </div>
   </div>
 </div>
-
 <!-- EDIT PROFILE -->
 <div id="epmod" class="epov hidden">
   <div class="epbox">
@@ -303,8 +331,7 @@ button{border:none;cursor:pointer;transition:background .18s}
     </div>
   </div>
 </div>
-
-<!-- TANAG WHITELIST (admin) -->
+<!-- TANAG WHITELIST -->
 <div id="tlmod" class="ov hidden">
   <div class="mbox">
     <div class="mhdr blue"><h2>Tanag Access List</h2><button class="mcl" onclick="closeTL()">x</button></div>
@@ -319,671 +346,638 @@ button{border:none;cursor:pointer;transition:background .18s}
     </div>
   </div>
 </div>
-
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbwBElECjNuxVJHj_cpODhrp8OXzMGqhlAD5zzxD7wo7eUriEPn2eKirodRo-DjmoLAJ/exec';
-const ADMINS = ['dev_1767677115148_nbxfegur4','dev_1767683003779_ywv7037na'];
-const GRP = 'group_tiyuhui';
-const REQ='req_', REQOK='reqaccept_', REQNO='reqdecline_';
-const TGA='tanagaccess_', TGR='tanagrevoke_';
-
-// Tanag keyboard layout
+const API='https://script.google.com/macros/s/AKfycbwBElECjNuxVJHj_cpODhrp8OXzMGqhlAD5zzxD7wo7eUriEPn2eKirodRo-DjmoLAJ/exec';
+const ADMINS=['dev_1767677115148_nbxfegur4','dev_1767683003779_ywv7037na'];
+const GRP='group_tiyuhui';
+const REQ='req_',REQOK='reqaccept_',REQNO='reqdecline_';
+const TGA='tanagaccess_',TGR='tanagrevoke_';
+const GINV='grpinv_',GINVOK='grpinvok_';
 const KB1=['q','w','e','r','t','y','u','i','o','p'];
 const KB2=['a','s','d','f','g','h','j','k','l'];
 const KB3=['z','x','c','v','b','n','m'];
-// Punctuation that appear as-is (not tanag images)
-const PUNC=['.', ',', '?', '!', ':', ';', "'", '"', '-', '–', '—',
-            '(', ')', '[', ']', '{', '}', '...', '/', '\\', '@', '#', '&', '*'];
+const PUNC=['.', ',', '?', '!', ':', ';', "'", '"', '-', '\u2013', '\u2014','(', ')', '[', ']', '{', '}', '...', '/', '\\', '@', '#', '&', '*'];
+let did='',uname='',uav='',sid='';
+let isAdm=false,tMode=false,isDk=false;
+let msgs=[],selC=null,sending=false;
+let online={},ucon={},pendIn={},userLastSeen={};
+let myGroups={},pendGrpInv={},ngExtraMembers=[];
+let tbuf=[];
 
-let did='', uname='', uav='', sid='';
-let isAdm=false, tMode=false, isDk=false;
-let msgs=[], selC=null, sending=false;
-let online={}, ucon={}, pendIn={};
-let tbuf=[]; // [{t:'tk'|'p'|'s', v:string}]  tk=tanag letter, p=punctuation/text, s=space
-
-// ─── TANAG WHITELIST ──────────────────────────────────────────
 function getTL(){try{return JSON.parse(localStorage.getItem('tanagWL')||'{}')}catch(e){return{}}}
 function saveTL(w){localStorage.setItem('tanagWL',JSON.stringify(w))}
+function hasTanag(){return isAdm||!!localStorage.getItem('grpReg_tiyuhui')||!!localStorage.getItem('tanagGranted_'+sid)}
+function imgSrc(l){return isDk?l.toUpperCase()+'.png':l.toLowerCase()+'.png'}
+function escH(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
 
-function hasTanag(){
-  if(isAdm) return true;
-  if(localStorage.getItem('grpReg_tiyuhui')) return true;
-  // Check whitelist — admin writes it to a shared key so user's browser doesn't have it.
-  // Instead we rely on the server notification (tanagaccess_ message) which sets localStorage.
-  return !!localStorage.getItem('tanagGranted_'+sid);
-}
-
-function imgSrc(l){ return isDk ? l.toUpperCase()+'.png' : l.toLowerCase()+'.png'; }
-
-// ─── BUILD TANAG KEYBOARD ─────────────────────────────────────
 function buildKB(){
-  [[KB1,'tkr1'],[KB2,'tkr2'],[KB3,'tkr3']].forEach(([row,id])=>{
-    const el=document.getElementById(id); el.innerHTML='';
-    row.forEach(l=>{
-      const btn=document.createElement('button');
-      btn.className='tk'; btn.title=l;
-      btn.onclick=()=>tIns({t:'tk',v:l});
-      const img=document.createElement('img'); img.src=imgSrc(l); img.alt=l;
-      img.onerror=()=>{btn.classList.add('miss');img.style.display='none';btn.textContent=l;};
-      const lbl=document.createElement('span'); lbl.className='tkl'; lbl.textContent=l;
-      btn.appendChild(img); btn.appendChild(lbl); el.appendChild(btn);
+  [[KB1,'tkr1'],[KB2,'tkr2'],[KB3,'tkr3']].forEach(function(x){
+    var row=x[0],id=x[1],el=document.getElementById(id);el.innerHTML='';
+    row.forEach(function(l){
+      var btn=document.createElement('button');btn.className='tk';btn.title=l;
+      btn.onclick=function(){tIns({t:'tk',v:l})};
+      var img=document.createElement('img');img.src=imgSrc(l);img.alt=l;
+      img.onerror=function(){btn.classList.add('miss');img.style.display='none';btn.textContent=l};
+      var lbl=document.createElement('span');lbl.className='tkl';lbl.textContent=l;
+      btn.appendChild(img);btn.appendChild(lbl);el.appendChild(btn);
     });
   });
-  // Punctuation row
-  const p4=document.getElementById('tkr4'); p4.innerHTML='';
-  PUNC.forEach(p=>{
-    const btn=document.createElement('button');
-    btn.className='tk punc'; btn.textContent=p; btn.title=p;
-    btn.onclick=()=>tIns({t:'p',v:p});
-    p4.appendChild(btn);
+  var p4=document.getElementById('tkr4');p4.innerHTML='';
+  PUNC.forEach(function(p){
+    var btn=document.createElement('button');btn.className='tk punc';btn.textContent=p;btn.title=p;
+    btn.onclick=function(){tIns({t:'p',v:p})};p4.appendChild(btn);
   });
 }
-
-function refreshKBImgs(){
-  document.querySelectorAll('.tk img').forEach(img=>{
-    if(img.alt&&/^[a-z]$/.test(img.alt)) img.src=imgSrc(img.alt);
-  });
-}
-
-// ─── TANAG BUFFER ─────────────────────────────────────────────
-function tIns(item){ tbuf.push(item); renderTD(); }
-function tSpc(){ tbuf.push({t:'s',v:' '}); renderTD(); }
-function tBS(){ if(tbuf.length) tbuf.pop(); renderTD(); }
-function tClear(){ tbuf=[]; renderTD(); }
-function tbufToToken(){
-  return tbuf.map(i=>i.t==='tk'?'[tanag:'+i.v+']':i.v).join('');
-}
-
+function refreshKBImgs(){document.querySelectorAll('.tk img').forEach(function(img){if(img.alt&&/^[a-z]$/.test(img.alt))img.src=imgSrc(img.alt)})}
+function tIns(item){tbuf.push(item);renderTD()}
+function tSpc(){tbuf.push({t:'s',v:' '});renderTD()}
+function tBS(){if(tbuf.length)tbuf.pop();renderTD()}
+function tClear(){tbuf=[];renderTD()}
+function tbufToToken(){return tbuf.map(function(i){return i.t==='tk'?'[tanag:'+i.v+']':i.v}).join('')}
 function renderTD(){
-  const d=document.getElementById('tdisp'); if(!d) return;
+  var d=document.getElementById('tdisp');if(!d)return;
   d.innerHTML='';
-  if(!tbuf.length){ d.dataset.empty='true'; return; }
+  if(!tbuf.length){d.dataset.empty='true';return}
   d.dataset.empty='false';
-  tbuf.forEach(item=>{
+  tbuf.forEach(function(item){
     if(item.t==='tk'){
-      const img=document.createElement('img');
-      img.src=imgSrc(item.v); img.alt=item.v;
+      var img=document.createElement('img');img.src=imgSrc(item.v);img.alt=item.v;
       img.style.cssText='height:1.15em;vertical-align:middle;display:inline-block;margin:0 1px';
-      img.onerror=()=>{const sp=document.createElement('span');sp.textContent=item.v;img.replaceWith(sp);};
+      img.onerror=function(){var sp=document.createElement('span');sp.textContent=item.v;img.replaceWith(sp)};
       d.appendChild(img);
-    } else {
-      const sp=document.createElement('span');
-      sp.textContent=item.v;
-      d.appendChild(sp);
-    }
+    }else{var sp=document.createElement('span');sp.textContent=item.v;d.appendChild(sp)}
   });
 }
-
 function renderTanag(html){
-  return html.replace(/\[tanag:([a-z])\]/g,(m,l)=>{
-    const src=isDk?l.toUpperCase()+'.png':l.toLowerCase()+'.png';
-    return `<img src="${src}" alt="${l}" style="height:1.15em;vertical-align:middle;display:inline-block;margin:0 1px" onerror="this.style.display='none'">`;
+  return html.replace(/\[tanag:([a-z])\]/g,function(m,l){
+    var src=isDk?l.toUpperCase()+'.png':l.toLowerCase()+'.png';
+    return '<img src="'+src+'" alt="'+l+'" style="height:1.15em;vertical-align:middle;display:inline-block;margin:0 1px" onerror="this.style.display=\'none\'">';
   });
 }
-
-// ─── TOGGLE TANAG MODE ────────────────────────────────────────
 function toggleTanag(){
-  if(!hasTanag()) return;
-  tMode=!tMode;
-  const btn=document.getElementById('tbtn');
-  const kb=document.getElementById('tkb');
-  const minput=document.getElementById('m');
-  const disp=document.getElementById('tdisp');
-  if(tMode){
-    btn.textContent='ENG'; btn.classList.add('ton');
-    kb.style.display='block';
-    minput.style.display='none'; disp.style.display='flex';
-    tClear();
-  } else {
-    btn.textContent='Tanag'; btn.classList.remove('ton');
-    kb.style.display='none';
-    minput.style.display=''; disp.style.display='none';
-    tClear();
-  }
+  if(!hasTanag())return;tMode=!tMode;
+  var btn=document.getElementById('tbtn'),kb=document.getElementById('tkb'),mi=document.getElementById('m'),di=document.getElementById('tdisp');
+  if(tMode){btn.textContent='ENG';btn.classList.add('ton');kb.style.display='block';mi.style.display='none';di.style.display='flex';tClear()}
+  else{btn.textContent='Tanag';btn.classList.remove('ton');kb.style.display='none';mi.style.display='';di.style.display='none';tClear()}
 }
-
-// Physical keys in tanag mode
 document.addEventListener('keydown',function(e){
-  if(!tMode) return;
-  const disp=document.getElementById('tdisp');
-  if(!disp||disp.style.display==='none') return;
-  if(e.key==='Enter'){e.preventDefault();send();return;}
-  if(e.key==='Backspace'){e.preventDefault();tBS();return;}
-  if(e.key===' '){e.preventDefault();tSpc();return;}
-  if(/^[a-zA-Z]$/.test(e.key)){
-    e.preventDefault();
-    tIns({t:'tk',v:e.key.toLowerCase()});
-    // hide on-screen keyboard after physical key
-    document.getElementById('tkb').style.display='none';
-    return;
-  }
-  // Punctuation keys — insert as plain text
-  if(e.key.length===1 && !e.ctrlKey && !e.metaKey && !e.altKey){
-    e.preventDefault();
-    tIns({t:'p',v:e.key});
-  }
+  if(!tMode)return;
+  var disp=document.getElementById('tdisp');if(!disp||disp.style.display==='none')return;
+  if(e.key==='Enter'){e.preventDefault();send();return}
+  if(e.key==='Backspace'){e.preventDefault();tBS();return}
+  if(e.key===' '){e.preventDefault();tSpc();return}
+  if(/^[a-zA-Z]$/.test(e.key)){e.preventDefault();tIns({t:'tk',v:e.key.toLowerCase()});document.getElementById('tkb').style.display='none';return}
+  if(e.key.length===1&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();tIns({t:'p',v:e.key})}
 });
 
-// ─── TANAG WHITELIST MODAL ────────────────────────────────────
-function openTL(){ renderTLItems(); document.getElementById('tlmod').classList.remove('hidden'); }
-function closeTL(){ document.getElementById('tlmod').classList.add('hidden'); document.getElementById('tlst').textContent=''; }
-
+function openTL(){renderTLItems();document.getElementById('tlmod').classList.remove('hidden')}
+function closeTL(){document.getElementById('tlmod').classList.add('hidden');document.getElementById('tlst').textContent=''}
 function renderTLItems(){
-  const wl=getTL(); const c=document.getElementById('tlitems'); c.innerHTML='';
-  const entries=Object.values(wl);
-  if(!entries.length){ c.innerHTML='<p style="color:var(--text-time);font-size:12px">No users added yet.</p>'; return; }
-  entries.forEach(e=>{
-    const div=document.createElement('div'); div.className='tli';
-    // Show real name from allMessages if available
-    const realMsg=msgs.filter(m=>m.serialId===e.serialId);
-    const dispName=realMsg.length ? realMsg[realMsg.length-1].name : (e.name||'User #'+e.serialId);
-    div.innerHTML=`<div class="tli-inf"><div class="tli-n">${escH(dispName)}</div><div class="tli-id">#${e.serialId}</div></div>
-      <button class="tlrm" onclick="rmTL('${e.serialId}')" title="Remove"><img src="kata.png" alt="X" onerror="this.parentNode.textContent='X'"></button>`;
+  var wl=getTL(),c=document.getElementById('tlitems');c.innerHTML='';
+  var entries=Object.values(wl);
+  if(!entries.length){c.innerHTML='<p style="color:var(--text-time);font-size:12px">No users added yet.</p>';return}
+  entries.forEach(function(e){
+    var div=document.createElement('div');div.className='tli';
+    var rm=msgs.filter(function(m){return m.serialId===e.serialId});
+    var dn=rm.length?rm[rm.length-1].name:(e.name||'User #'+e.serialId);
+    div.innerHTML='<div class="tli-inf"><div class="tli-n">'+escH(dn)+'</div><div class="tli-id">#'+e.serialId+'</div></div>'
+      +'<button class="tlrm" onclick="rmTL(\''+e.serialId+'\')">x</button>';
     c.appendChild(div);
   });
 }
-
 function addTL(){
-  const inp=document.getElementById('tlid');
-  const st=document.getElementById('tlst');
-  const tid=inp.value.trim();
-  if(!/^\d{4}$/.test(tid)){st.textContent='Please enter a valid 4-digit ID.';return;}
-  // Get name from messages
-  const related=msgs.filter(m=>m.serialId===tid);
-  const name=related.length ? related[related.length-1].name : 'User #'+tid;
-  const wl=getTL(); wl[tid]={serialId:tid,name}; saveTL(wl);
-  inp.value=''; st.textContent=name+' (#'+tid+') added.';
-  renderTLItems();
-  // Notify that user via sheet message
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:'System',message:'__tanag_granted__',
-    deviceId:did,serialId:sid,avatar:uav,
-    targetSerial:TGA+tid
-  })}).catch(()=>{});
+  var inp=document.getElementById('tlid'),st=document.getElementById('tlst'),tid=inp.value.trim();
+  if(!/^\d{4}$/.test(tid)){st.textContent='Please enter a valid 4-digit ID.';return}
+  var rel=msgs.filter(function(m){return m.serialId===tid});
+  var name=rel.length?rel[rel.length-1].name:'User #'+tid;
+  var wl=getTL();wl[tid]={serialId:tid,name:name};saveTL(wl);
+  inp.value='';st.textContent=name+' (#'+tid+') added.';renderTLItems();
+  fetch(API,{method:'POST',body:JSON.stringify({name:'System',message:'__tanag_granted__',deviceId:did,serialId:sid,avatar:uav,targetSerial:TGA+tid})}).catch(function(){});
 }
-
 function rmTL(tid){
-  const wl=getTL(); delete wl[tid]; saveTL(wl); renderTLItems();
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:'System',message:'__tanag_revoked__',
-    deviceId:did,serialId:sid,avatar:uav,
-    targetSerial:TGR+tid
-  })}).catch(()=>{});
+  var wl=getTL();delete wl[tid];saveTL(wl);renderTLItems();
+  fetch(API,{method:'POST',body:JSON.stringify({name:'System',message:'__tanag_revoked__',deviceId:did,serialId:sid,avatar:uav,targetSerial:TGR+tid})}).catch(function(){});
 }
-
-// Process tanag access messages from server
 function procTanag(messages){
-  messages.forEach(msg=>{
-    if(msg.targetSerial===TGA+sid){
-      localStorage.setItem('tanagGranted_'+sid,'1');
-      document.getElementById('tbtn').style.display='block';
-      buildKB();
-    }
-    if(msg.targetSerial===TGR+sid){
-      localStorage.removeItem('tanagGranted_'+sid);
-      if(tMode) toggleTanag();
-      document.getElementById('tbtn').style.display='none';
-    }
+  messages.forEach(function(msg){
+    if(msg.targetSerial===TGA+sid){localStorage.setItem('tanagGranted_'+sid,'1');document.getElementById('tbtn').style.display='block';buildKB()}
+    if(msg.targetSerial===TGR+sid){localStorage.removeItem('tanagGranted_'+sid);if(tMode)toggleTanag();document.getElementById('tbtn').style.display='none'}
   });
 }
 
-// ─── INIT ─────────────────────────────────────────────────────
-function getDid(){let i=localStorage.getItem('chatDeviceId');if(!i){i='dev_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);localStorage.setItem('chatDeviceId',i);}return i;}
-function getSid(){let i=localStorage.getItem('chatSerialId');if(!i){i=Math.floor(1000+Math.random()*9000).toString();localStorage.setItem('chatSerialId',i);}return i;}
+// GROUPS
+function loadMyGroups(){try{myGroups=JSON.parse(localStorage.getItem('myGroups')||'{}')}catch(e){myGroups={}}}
+function saveMyGroups(){localStorage.setItem('myGroups',JSON.stringify(myGroups))}
+function loadPendGrpInv(){try{pendGrpInv=JSON.parse(localStorage.getItem('pendGrpInv')||'{}')}catch(e){pendGrpInv={}}}
+function savePendGrpInv(){localStorage.setItem('pendGrpInv',JSON.stringify(pendGrpInv))}
 
+function openNewGroup(){
+  if(!uname){alert('Please set your name first');return}
+  ngExtraMembers=[];
+  var c=document.getElementById('ng-contacts');c.innerHTML='';
+  var all=Object.values(ucon);
+  if(!all.length){c.innerHTML='<p style="font-size:12px;color:var(--text-time);padding:5px">No contacts yet. Add by ID below.</p>'}
+  else all.forEach(function(ct){
+    var div=document.createElement('div');div.className='mem-item';
+    div.innerHTML='<input type="checkbox" id="ngc_'+ct.serialId+'" value="'+ct.serialId+'">'
+      +'<label for="ngc_'+ct.serialId+'" style="cursor:pointer;flex:1;font-size:12px;color:var(--text-main)">'+escH(ct.name)+' <span style="font-size:10px;color:var(--text-time)">#'+ct.serialId+'</span></label>';
+    c.appendChild(div);
+  });
+  document.getElementById('ng-name').value='';
+  document.getElementById('ng-desc').value='';
+  document.getElementById('ng-pic').value='';
+  document.getElementById('ng-sid').value='';
+  document.getElementById('ng-added').textContent='';
+  document.getElementById('ngmod').classList.remove('hidden');
+}
+function closeNG(){document.getElementById('ngmod').classList.add('hidden')}
+function ngAddById(){
+  var inp=document.getElementById('ng-sid'),t=inp.value.trim();
+  if(!/^\d{4}$/.test(t)){alert('Enter valid 4-digit ID');return}
+  if(t===sid){alert('That is your own ID');return}
+  if(!ngExtraMembers.find(function(m){return m.serialId===t})){
+    var rel=msgs.filter(function(m){return m.serialId===t});
+    var nm=rel.length?rel[rel.length-1].name:'User #'+t;
+    var av=rel.length&&rel[rel.length-1].avatar?rel[rel.length-1].avatar:'bb.png';
+    ngExtraMembers.push({serialId:t,name:nm,avatar:av});
+    document.getElementById('ng-added').textContent='Added: '+ngExtraMembers.map(function(m){return m.name}).join(', ');
+  }
+  inp.value='';
+}
+function createGroup(){
+  var name=document.getElementById('ng-name').value.trim();
+  if(!name){alert('Group name required');return}
+  var desc=document.getElementById('ng-desc').value.trim();
+  var pic=document.getElementById('ng-pic').value.trim()||'bb.png';
+  var groupId='g'+Math.floor(10000+Math.random()*90000);
+  var checked=[];
+  document.querySelectorAll('#ng-contacts input[type=checkbox]:checked').forEach(function(cb){
+    var s=cb.value;if(ucon[s])checked.push({serialId:s,name:ucon[s].name,avatar:ucon[s].avatar||'bb.png'});
+  });
+  ngExtraMembers.forEach(function(m){if(!checked.find(function(c){return c.serialId===m.serialId}))checked.push(m)});
+  ngExtraMembers=[];
+  var grpData={id:groupId,name:name,desc:desc,pic:pic,adminSid:sid,adminName:uname,members:[{serialId:sid,name:uname,avatar:uav}],invited:checked,createdAt:new Date().toISOString()};
+  myGroups[groupId]=grpData;saveMyGroups();
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_created__:'+JSON.stringify({id:groupId,name:name,desc:desc,pic:pic,adminSid:sid,adminName:uname,members:[{serialId:sid,name:uname,avatar:uav}]}),deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(function(){});
+  checked.forEach(function(m){sendGrpInvite(groupId,name,desc,pic,m.serialId)});
+  closeNG();selectC(groupId,'ggroup');
+  alert('Group "'+name+'" created! Group ID: '+groupId);
+}
+function sendGrpInvite(groupId,groupName,groupDesc,groupPic,toSid){
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_invite__:'+JSON.stringify({groupId:groupId,groupName:groupName,groupDesc:groupDesc,groupPic:groupPic,adminSid:sid,adminName:uname}),deviceId:did,serialId:sid,avatar:uav,targetSerial:GINV+toSid})}).catch(function(){});
+}
+function procGrpInvites(messages){
+  var changed=false;
+  messages.forEach(function(msg){
+    if(msg.targetSerial===GINV+sid&&msg.message.startsWith('__grp_invite__:')){
+      try{
+        var inv=JSON.parse(msg.message.replace('__grp_invite__:',''));
+        if(!myGroups[inv.groupId]&&!pendGrpInv[inv.groupId]){
+          pendGrpInv[inv.groupId]={groupId:inv.groupId,name:inv.groupName,desc:inv.groupDesc||'',pic:inv.groupPic||'bb.png',adminSid:inv.adminSid,adminName:inv.adminName};
+          savePendGrpInv();changed=true;
+        }
+      }catch(ex){}
+    }
+    if(msg.targetSerial&&msg.targetSerial.startsWith(GINVOK)&&msg.message.startsWith('__grp_joined__:')){
+      var gid=msg.targetSerial.replace(GINVOK,'');
+      if(myGroups[gid]){
+        try{
+          var info=JSON.parse(msg.message.replace('__grp_joined__:',''));
+          if(!myGroups[gid].members.find(function(m){return m.serialId===info.serialId})){
+            myGroups[gid].members.push(info);
+            if(myGroups[gid].invited)myGroups[gid].invited=myGroups[gid].invited.filter(function(m){return m.serialId!==info.serialId});
+            saveMyGroups();changed=true;
+          }
+        }catch(ex){}
+      }
+    }
+    if(msg.targetSerial&&msg.targetSerial.startsWith('grpinvno_')&&msg.message.startsWith('__grp_declined__:')){
+      var gid2=msg.targetSerial.replace('grpinvno_','');
+      if(myGroups[gid2]){
+        try{
+          var info2=JSON.parse(msg.message.replace('__grp_declined__:',''));
+          if(myGroups[gid2].invited)myGroups[gid2].invited=myGroups[gid2].invited.filter(function(m){return m.serialId!==info2.serialId});
+          saveMyGroups();changed=true;
+        }catch(ex){}
+      }
+    }
+    if(msg.message&&msg.message.startsWith('__grp_created__:')){
+      try{
+        var gd=JSON.parse(msg.message.replace('__grp_created__:',''));
+        if(gd.members&&gd.members.find(function(m){return m.serialId===sid})&&!myGroups[gd.id]){
+          myGroups[gd.id]=gd;saveMyGroups();changed=true;
+        }
+      }catch(ex){}
+    }
+  });
+  if(changed)updateCL();
+}
+function acceptGrpInv(groupId){
+  var inv=pendGrpInv[groupId];if(!inv)return;
+  myGroups[groupId]={id:groupId,name:inv.name,desc:inv.desc||'',pic:inv.pic,adminSid:inv.adminSid,adminName:inv.adminName,members:[{serialId:sid,name:uname,avatar:uav}],invited:[]};
+  saveMyGroups();delete pendGrpInv[groupId];savePendGrpInv();
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_joined__:'+JSON.stringify({serialId:sid,name:uname,avatar:uav}),deviceId:did,serialId:sid,avatar:uav,targetSerial:GINVOK+groupId})}).catch(function(){});
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'Assalamu alaikum wa rahmatullahi wa barakatuh! I am new in \''+inv.name+'\'!',deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(function(){});
+  updateCL();selectC(groupId,'ggroup');
+  document.getElementById('ginvmod').classList.add('hidden');
+}
+function declineGrpInv(groupId){
+  var inv=pendGrpInv[groupId];
+  if(inv)fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_declined__:'+JSON.stringify({serialId:sid}),deviceId:did,serialId:sid,avatar:uav,targetSerial:'grpinvno_'+groupId})}).catch(function(){});
+  delete pendGrpInv[groupId];savePendGrpInv();updateCL();
+  document.getElementById('ginvmod').classList.add('hidden');
+}
+function openGrpInvModal(){
+  var list=document.getElementById('ginv-list');list.innerHTML='';
+  var invs=Object.values(pendGrpInv);
+  if(!invs.length){list.innerHTML='<p style="color:var(--text-time)">No pending invitations.</p>'}
+  else invs.forEach(function(inv){
+    var div=document.createElement('div');
+    div.style.cssText='border-left:4px solid #1976d2;padding:9px 11px;background:var(--bg-user);border-radius:0 7px 7px 0;margin-bottom:8px';
+    div.innerHTML='<div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">'
+      +'<img src="'+escH(inv.pic||'bb.png')+'" style="width:38px;height:38px;border-radius:50%;object-fit:cover" onerror="this.src=\'bb.png\'">'
+      +'<div><div style="font-weight:600;font-size:13px;color:var(--text-main)">'+escH(inv.name)+'</div>'
+      +(inv.desc?'<div style="font-size:11px;color:var(--text-time);font-style:italic">'+escH(inv.desc)+'</div>':'')
+      +'<div style="font-size:11px;color:var(--text-time)">Invited by '+escH(inv.adminName)+' (#'+escH(inv.adminSid)+')</div></div></div>'
+      +'<div class="rbtns"><button class="bok" onclick="acceptGrpInv(\''+inv.groupId+'\')">Accept</button>'
+      +'<button class="bno" onclick="declineGrpInv(\''+inv.groupId+'\')">Decline</button></div>';
+    list.appendChild(div);
+  });
+  document.getElementById('ginvmod').classList.remove('hidden');
+}
+function openGrpInfo(groupId){
+  var g=myGroups[groupId];if(!g)return;
+  var body=document.getElementById('ginfo-body'),ftr=document.getElementById('ginfo-ftr');
+  body.innerHTML='';ftr.innerHTML='';
+  var html='<div class="grp-info-bar"><img src="'+escH(g.pic||'bb.png')+'" onerror="this.src=\'bb.png\'">'
+    +'<div><div class="grp-info-name">'+escH(g.name)+'</div>'
+    +(g.desc?'<div class="grp-info-sub">'+escH(g.desc)+'</div>':'')
+    +'<div class="grp-info-sub">'+(g.members||[]).length+' members &bull; Group ID: '+g.id+'</div></div></div>'
+    +'<p style="font-weight:600;font-size:12px;color:var(--text-time);margin-bottom:7px">MEMBERS</p>';
+  (g.members||[]).forEach(function(m){
+    html+='<div class="tli"><div class="tli-inf"><div class="tli-n">'+escH(m.name)+(m.serialId===g.adminSid?' <span class="grp-badge">Admin</span>':'')+'</div><div class="tli-id">#'+m.serialId+'</div></div>'
+      +(g.adminSid===sid&&m.serialId!==sid?'<button class="tlrm" onclick="rmGrpMember(\''+groupId+'\',\''+m.serialId+'\')">x</button>':'')+'</div>';
+  });
+  if(g.adminSid===sid&&g.invited&&g.invited.length){
+    html+='<p style="font-weight:600;font-size:12px;color:var(--text-time);margin:10px 0 5px">INVITED (pending)</p>';
+    (g.invited||[]).forEach(function(m){html+='<div class="tli" style="opacity:.7"><div class="tli-inf"><div class="tli-n">'+escH(m.name)+'</div><div class="tli-id">#'+m.serialId+'</div></div></div>'});
+  }
+  body.innerHTML=html;
+  if(g.adminSid===sid){
+    ftr.innerHTML='<input id="ginfo-add-id" placeholder="Add member by ID" maxlength="4" style="flex:1">'
+      +'<button onclick="addGrpMember(\''+groupId+'\')" style="flex:0;padding:9px 14px;border-radius:19px;font-weight:600;font-size:12px;background:var(--header-bg);color:#fff;border:none;cursor:pointer;white-space:nowrap">Add</button>';
+  }else{ftr.innerHTML='<button class="bcan" style="flex:1" onclick="leaveGroup(\''+groupId+'\')">Leave Group</button>'}
+  document.getElementById('ginfomod').classList.remove('hidden');
+}
+function addGrpMember(groupId){
+  var inp=document.getElementById('ginfo-add-id'),t=inp.value.trim();
+  if(!/^\d{4}$/.test(t)){alert('Enter valid 4-digit ID');return}
+  var g=myGroups[groupId];if(!g)return;
+  if(g.members.find(function(m){return m.serialId===t})){alert('Already a member');return}
+  if(g.invited&&g.invited.find(function(m){return m.serialId===t})){alert('Already invited');return}
+  var rel=msgs.filter(function(m){return m.serialId===t});
+  var nm=rel.length?rel[rel.length-1].name:'User #'+t;
+  var av=rel.length&&rel[rel.length-1].avatar?rel[rel.length-1].avatar:'bb.png';
+  if(!g.invited)g.invited=[];
+  g.invited.push({serialId:t,name:nm,avatar:av});saveMyGroups();
+  sendGrpInvite(groupId,g.name,g.desc||'',g.pic,t);
+  inp.value='';openGrpInfo(groupId);
+}
+function rmGrpMember(groupId,memberSid){
+  var g=myGroups[groupId];if(!g)return;
+  g.members=g.members.filter(function(m){return m.serialId!==memberSid});saveMyGroups();
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'__grp_removed__:'+memberSid,deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(function(){});
+  openGrpInfo(groupId);updateCL();
+}
+function leaveGroup(groupId){
+  if(!confirm('Leave this group?'))return;
+  delete myGroups[groupId];saveMyGroups();
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:uname+' left the group.',deviceId:did,serialId:sid,avatar:uav,targetSerial:groupId})}).catch(function(){});
+  selC=null;document.getElementById('cchdr').classList.add('hidden');
+  document.getElementById('box').innerHTML='<div class="empty">Select a chat</div>';
+  document.getElementById('ginfomod').classList.add('hidden');updateCL();
+}
+
+// INIT
+function getDid(){var i=localStorage.getItem('chatDeviceId');if(!i){i='dev_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);localStorage.setItem('chatDeviceId',i)}return i}
+function getSid(){var i=localStorage.getItem('chatSerialId');if(!i){i=Math.floor(1000+Math.random()*9000).toString();localStorage.setItem('chatSerialId',i)}return i}
 function init(){
-  did=getDid(); sid=getSid();
+  did=getDid();sid=getSid();
   uname=localStorage.getItem('chatUserName')||'';
   uav=localStorage.getItem('chatUserAvatar')||'bb.png';
   isAdm=ADMINS.includes(did);
   try{ucon=JSON.parse(localStorage.getItem('chatContacts')||'{}')}catch(e){ucon={}}
   try{pendIn=JSON.parse(localStorage.getItem('pendingIn')||'{}')}catch(e){pendIn={}}
-
-  if(isAdm){
-    document.getElementById('admbadge').style.display='block';
-    document.getElementById('sidebar').classList.remove('hidden');
-    document.getElementById('tlbtn').style.display='block';
-  } else if(Object.keys(ucon).length||Object.keys(pendIn).length){
-    document.getElementById('sidebar').classList.remove('hidden');
-  }
-
+  loadMyGroups();loadPendGrpInv();
+  document.getElementById('sidebar').classList.remove('hidden');
+  if(isAdm){document.getElementById('admbadge').style.display='block';document.getElementById('tlbtn').style.display='block'}
   if(!uname){
     document.getElementById('nsetup').classList.remove('hidden');
     document.getElementById('cinput').classList.add('hidden');
     document.getElementById('sn').focus();
-  } else {
+  }else{
     document.getElementById('nsetup').classList.add('hidden');
     document.getElementById('cinput').classList.remove('hidden');
     updateBadge();
   }
-
-  if(hasTanag()){ document.getElementById('tbtn').style.display='block'; buildKB(); }
+  if(hasTanag()){document.getElementById('tbtn').style.display='block';buildKB()}
 }
 
-// ─── THEME ────────────────────────────────────────────────────
 function toggleTheme(){
-  const h=document.documentElement,b=document.getElementById('thbtn');
-  if(isDk){h.removeAttribute('data-theme');b.textContent='Dark';localStorage.setItem('theme','light');isDk=false;}
-  else{h.setAttribute('data-theme','dark');b.textContent='Light';localStorage.setItem('theme','dark');isDk=true;}
-  refreshKBImgs();
-  if(tMode) renderTD();
-  // re-render tanag in all visible messages
-  document.querySelectorAll('.m').forEach(el=>{
-    // re-render by scanning for tanag img alts
-    el.querySelectorAll('img[alt]').forEach(img=>{
-      if(/^[a-z]$/.test(img.alt)) img.src=imgSrc(img.alt);
-    });
-  });
+  var h=document.documentElement,b=document.getElementById('thbtn');
+  if(isDk){h.removeAttribute('data-theme');b.textContent='Dark';localStorage.setItem('theme','light');isDk=false}
+  else{h.setAttribute('data-theme','dark');b.textContent='Light';localStorage.setItem('theme','dark');isDk=true}
+  refreshKBImgs();if(tMode)renderTD();
+  document.querySelectorAll('.m img[alt]').forEach(function(img){if(/^[a-z]$/.test(img.alt))img.src=imgSrc(img.alt)});
 }
-if(localStorage.getItem('theme')==='dark'){
-  document.documentElement.setAttribute('data-theme','dark');
-  document.getElementById('thbtn').textContent='Light';
-  isDk=true;
-}
+if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('thbtn').textContent='Light';isDk=true}
 
-// ─── BADGE ────────────────────────────────────────────────────
 function updateBadge(){
-  const b=document.getElementById('ubadge');
-  b.innerHTML=`<img src="${uav}" class="uav" onerror="this.src='bb.png'"><span>${uname} #${sid}</span>`;
+  var b=document.getElementById('ubadge');
+  b.innerHTML='<img src="'+uav+'" class="uav" onerror="this.src=\'bb.png\'"><span>'+uname+' #'+sid+'</span>';
   b.style.display='flex';
 }
-
-// ─── PROFILE SETUP ────────────────────────────────────────────
 document.getElementById('sn').addEventListener('input',upSP);
 document.getElementById('sa').addEventListener('input',upSP);
 function upSP(){
-  const n=document.getElementById('sn').value.trim();
-  const a=document.getElementById('sa').value.trim()||'bb.png';
-  if(n){
-    document.getElementById('sprev').style.display='flex';
-    document.getElementById('sprev-name').textContent=n;
-    document.getElementById('sprev-id').textContent='#'+sid;
-    const i=document.getElementById('sprev-img'); i.src=a; i.onerror=()=>i.src='bb.png';
-  } else document.getElementById('sprev').style.display='none';
+  var n=document.getElementById('sn').value.trim(),a=document.getElementById('sa').value.trim()||'bb.png';
+  if(n){document.getElementById('sprev').style.display='flex';document.getElementById('sprev-name').textContent=n;document.getElementById('sprev-id').textContent='#'+sid;var i=document.getElementById('sprev-img');i.src=a;i.onerror=function(){i.src='bb.png'}}
+  else document.getElementById('sprev').style.display='none';
 }
 function saveName(){
-  const n=document.getElementById('sn').value.trim();
-  const a=document.getElementById('sa').value.trim()||'bb.png';
-  if(!n){alert('Please enter your name');return;}
-  uname=n; uav=a;
-  localStorage.setItem('chatUserName',n); localStorage.setItem('chatUserAvatar',a);
-  document.getElementById('nsetup').classList.add('hidden');
-  document.getElementById('cinput').classList.remove('hidden');
-  updateBadge(); document.getElementById('m').focus();
-  hb(); regUser(); loadMsgs();
+  var n=document.getElementById('sn').value.trim(),a=document.getElementById('sa').value.trim()||'bb.png';
+  if(!n){alert('Please enter your name');return}
+  uname=n;uav=a;localStorage.setItem('chatUserName',n);localStorage.setItem('chatUserAvatar',a);
+  document.getElementById('nsetup').classList.add('hidden');document.getElementById('cinput').classList.remove('hidden');
+  updateBadge();document.getElementById('m').focus();hb();regUser();loadMsgs();
 }
-function regUser(){
-  fetch(API,{method:'POST',body:JSON.stringify({register:true,deviceId:did,serialId:sid,name:uname,avatar:uav})}).catch(()=>{});
-}
-
-// ─── EDIT PROFILE ─────────────────────────────────────────────
-function openEP(){
-  document.getElementById('en').value=uname;
-  document.getElementById('ea').value=uav==='bb.png'?'':uav;
-  upEP(); document.getElementById('epmod').classList.remove('hidden');
-}
-function closeEP(){ document.getElementById('epmod').classList.add('hidden'); }
+function regUser(){fetch(API,{method:'POST',body:JSON.stringify({register:true,deviceId:did,serialId:sid,name:uname,avatar:uav,saveToSheet:true})}).catch(function(){})}
+function openEP(){document.getElementById('en').value=uname;document.getElementById('ea').value=uav==='bb.png'?'':uav;upEP();document.getElementById('epmod').classList.remove('hidden')}
+function closeEP(){document.getElementById('epmod').classList.add('hidden')}
 document.getElementById('en').addEventListener('input',upEP);
 document.getElementById('ea').addEventListener('input',upEP);
 function upEP(){
-  const n=document.getElementById('en').value.trim()||uname;
-  const a=document.getElementById('ea').value.trim()||uav;
-  document.getElementById('ep-name').textContent=n;
-  document.getElementById('ep-id').textContent='#'+sid;
-  const i=document.getElementById('ep-img'); i.src=a; i.onerror=()=>i.src='bb.png';
+  var n=document.getElementById('en').value.trim()||uname,a=document.getElementById('ea').value.trim()||uav;
+  document.getElementById('ep-name').textContent=n;document.getElementById('ep-id').textContent='#'+sid;
+  var i=document.getElementById('ep-img');i.src=a;i.onerror=function(){i.src='bb.png'};
 }
 function saveEP(){
-  const n=document.getElementById('en').value.trim();
-  const a=document.getElementById('ea').value.trim()||'bb.png';
-  if(!n){alert('Please enter your name');return;}
-  uname=n; uav=a;
-  localStorage.setItem('chatUserName',n); localStorage.setItem('chatUserAvatar',a);
-  updateBadge(); hb(); regUser(); closeEP(); alert('Profile updated.');
+  var n=document.getElementById('en').value.trim(),a=document.getElementById('ea').value.trim()||'bb.png';
+  if(!n){alert('Please enter your name');return}
+  uname=n;uav=a;localStorage.setItem('chatUserName',n);localStorage.setItem('chatUserAvatar',a);
+  updateBadge();hb();regUser();closeEP();alert('Profile updated.');
 }
+function showHelp(){document.getElementById('helpmod').classList.remove('hidden');document.getElementById('hser').textContent='#'+sid}
+function closeHelp(){document.getElementById('helpmod').classList.add('hidden')}
 
-// ─── HELP ─────────────────────────────────────────────────────
-function showHelp(){ document.getElementById('helpmod').classList.remove('hidden'); document.getElementById('hser').textContent='#'+sid; }
-function closeHelp(){ document.getElementById('helpmod').classList.add('hidden'); }
-
-// ─── FRIEND REQUESTS ──────────────────────────────────────────
+// FRIEND REQUESTS
 function startNewChat(){
-  if(!uname){alert('Please set your name first');return;}
-  const t=prompt('Enter 4-digit Serial ID to send a chat request:');
-  if(!t) return;
-  if(!/^\d{4}$/.test(t)){alert('Invalid 4-digit ID');return;}
-  if(t===sid){alert('You cannot chat with yourself!');return;}
-  if(ucon[t]){selectC(t,'user');return;}
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname, message:'Chat request from '+uname+' (#'+sid+')',
-    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQ+t
-  })})
-  .then(r=>r.json())
-  .then(res=>{
-    if(res.status==='success'){
-      alert('Request sent to #'+t+'! Waiting for acceptance.');
-      document.getElementById('sidebar').classList.remove('hidden');
-    } else alert('Failed to send request.');
-  }).catch(()=>alert('Network error.'));
+  if(!uname){alert('Please set your name first');return}
+  var t=prompt('Enter 4-digit Serial ID to send a chat request:');if(!t)return;
+  if(!/^\d{4}$/.test(t)){alert('Invalid 4-digit ID');return}
+  if(t===sid){alert('You cannot chat with yourself!');return}
+  if(ucon[t]){selectC(t,'user');return}
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'Chat request from '+uname+' (#'+sid+')',deviceId:did,serialId:sid,avatar:uav,targetSerial:REQ+t})})
+  .then(function(r){return r.json()}).then(function(res){
+    if(res.status==='success')alert('Request sent to #'+t+'! Waiting for acceptance.');
+    else alert('Failed to send request.');
+  }).catch(function(){alert('Network error.')});
 }
-
-function acceptReq(from, fromName, fromAv){
-  ucon[from]={serialId:from, name:fromName, avatar:fromAv||'bb.png'};
-  localStorage.setItem('chatContacts',JSON.stringify(ucon));
-  delete pendIn[from]; localStorage.setItem('pendingIn',JSON.stringify(pendIn));
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname, message:uname+' (#'+sid+') accepted your request!',
-    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQOK+from
-  })}).catch(()=>{});
-  updateCL(); selectC(from,'user');
+function acceptReq(from,fromName,fromAv){
+  ucon[from]={serialId:from,name:fromName,avatar:fromAv||'bb.png'};localStorage.setItem('chatContacts',JSON.stringify(ucon));
+  delete pendIn[from];localStorage.setItem('pendingIn',JSON.stringify(pendIn));
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:uname+' (#'+sid+') accepted your request!',deviceId:did,serialId:sid,avatar:uav,targetSerial:REQOK+from})}).catch(function(){});
+  updateCL();selectC(from,'user');
 }
-
 function declineReq(from){
-  delete pendIn[from]; localStorage.setItem('pendingIn',JSON.stringify(pendIn));
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:uname, message:'Request declined.',
-    deviceId:did, serialId:sid, avatar:uav, targetSerial:REQNO+from
-  })}).catch(()=>{});
+  delete pendIn[from];localStorage.setItem('pendingIn',JSON.stringify(pendIn));
+  fetch(API,{method:'POST',body:JSON.stringify({name:uname,message:'Request declined.',deviceId:did,serialId:sid,avatar:uav,targetSerial:REQNO+from})}).catch(function(){});
   updateCL();
 }
-
-// CRITICAL FIX: processReqs runs on every loadMsgs call.
-// We track which request message IDs we've already processed so we don't re-show them.
-const seenReqs=new Set(JSON.parse(localStorage.getItem('seenReqs')||'[]'));
-
 function procReqs(messages){
-  let changed=false;
-  messages.forEach(msg=>{
-    // Friend request addressed to me
-    if(msg.targetSerial===REQ+sid){
-      const f=msg.serialId;
-      if(f && f!==sid && !ucon[f] && !pendIn[f]){
-        pendIn[f]={name:msg.name, avatar:msg.avatar||'bb.png', serialId:f};
-        localStorage.setItem('pendingIn',JSON.stringify(pendIn));
-        document.getElementById('sidebar').classList.remove('hidden');
-        changed=true;
-      }
-    }
-    // My request was accepted
-    if(msg.targetSerial===REQOK+sid){
-      const f=msg.serialId;
-      if(f && !ucon[f]){
-        ucon[f]={serialId:f, name:msg.name, avatar:msg.avatar||'bb.png'};
-        localStorage.setItem('chatContacts',JSON.stringify(ucon));
-        changed=true;
-      }
-    }
+  var changed=false;
+  messages.forEach(function(msg){
+    if(msg.targetSerial===REQ+sid){var f=msg.serialId;if(f&&f!==sid&&!ucon[f]&&!pendIn[f]){pendIn[f]={name:msg.name,avatar:msg.avatar||'bb.png',serialId:f};localStorage.setItem('pendingIn',JSON.stringify(pendIn));changed=true}}
+    if(msg.targetSerial===REQOK+sid){var f=msg.serialId;if(f&&!ucon[f]){ucon[f]={serialId:f,name:msg.name,avatar:msg.avatar||'bb.png'};localStorage.setItem('chatContacts',JSON.stringify(ucon));changed=true}}
   });
-  if(changed) updateCL();
+  if(changed)updateCL();
 }
 
-// ─── GROUP CHAT ───────────────────────────────────────────────
-function isGrpMem(){ return isAdm||!!localStorage.getItem('grpReg_tiyuhui'); }
-
-function openGrp(){
-  if(!localStorage.getItem('grpReg_tiyuhui')) document.getElementById('grpmod').classList.remove('hidden');
-  else selectC(GRP,'group');
-}
-function closeGrp(){ document.getElementById('grpmod').classList.add('hidden'); }
-
+// TIYUHUI GROUP
+function isGrpMem(){return isAdm||!!localStorage.getItem('grpReg_tiyuhui')}
+function openGrp(){if(!localStorage.getItem('grpReg_tiyuhui'))document.getElementById('grpmod').classList.remove('hidden');else selectC(GRP,'group')}
+function closeGrp(){document.getElementById('grpmod').classList.add('hidden')}
 function saveGrp(){
-  const n=document.getElementById('gn').value.trim();
-  const e=document.getElementById('ge').value.trim();
-  const f=document.getElementById('gf').value.trim();
-  if(!n){alert('Full name required');return;}
-  if(!e){alert('Email required');return;}
-  if(!f){alert('Flat number required');return;}
-  if(!/\S+@\S+\.\S+/.test(e)){alert('Invalid email');return;}
-
+  var n=document.getElementById('gn').value.trim(),e=document.getElementById('ge').value.trim(),f=document.getElementById('gf').value.trim();
+  if(!n){alert('Full name required');return}if(!e){alert('Email required');return}if(!f){alert('Flat number required');return}
+  if(!/\S+@\S+\.\S+/.test(e)){alert('Invalid email');return}
   localStorage.setItem('grpReg_tiyuhui',JSON.stringify({name:n,email:e,flat:f,joinedAt:new Date().toISOString()}));
-
-  // Save to Google Sheet
-  fetch(API,{method:'POST',body:JSON.stringify({groupReg:true,name:n,email:e,flat:f,serialId:sid})}).catch(()=>{});
-
-  // Join message in Bengali
-  const joinMsg='আসসালামু আলাইকুম! আমি Flat '+f+' এর '+n+' অনলাইন টিয়ুহুই গ্রুপের চ্যাটে চলে এসেছি!';
-  fetch(API,{method:'POST',body:JSON.stringify({
-    name:n, message:joinMsg, deviceId:did, serialId:sid, avatar:uav, targetSerial:GRP
-  })}).catch(()=>{});
-
-  closeGrp();
-  if(hasTanag()){ document.getElementById('tbtn').style.display='block'; buildKB(); }
-  selectC(GRP,'group');
-  alert('Welcome to the group!');
+  fetch(API,{method:'POST',body:JSON.stringify({groupReg:true,name:n,email:e,flat:f,serialId:sid})}).catch(function(){});
+  var joinMsg='\u0986\u0633\u09b8\u09be\u09b2\u09be\u09ae\u09c1 \u0986\u09b2\u09be\u0987\u0995\u09c1\u09ae! \u0986\u09ae\u09bf Flat '+f+' \u098f\u09b0 '+n+' \u0985\u09a8\u09b2\u09be\u0987\u09a8 \u099f\u09bf\u09af\u09bc\u09c1\u09b9\u09c1\u0987 \u0997\u09cd\u09b0\u09c1\u09aa\u09c7\u09b0 \u099a\u09cd\u09af\u09be\u099f\u09c7 \u099a\u09b2\u09c7 \u098f\u09b8\u09c7\u099b\u09bf!';
+  fetch(API,{method:'POST',body:JSON.stringify({name:n,message:joinMsg,deviceId:did,serialId:sid,avatar:uav,targetSerial:GRP})}).catch(function(){});
+  closeGrp();if(hasTanag()){document.getElementById('tbtn').style.display='block';buildKB()}
+  selectC(GRP,'group');alert('Welcome to the group!');
 }
 
-// ─── CONTACT LIST ─────────────────────────────────────────────
-function updateCL(){
-  const cl=document.getElementById('cl');
-  const contacts=[];
+// LAST SEEN
+function fmtLastSeen(iso){
+  if(!iso)return null;
+  var d=new Date(iso),now=new Date(),diff=now-d;
+  if(diff<60000)return 'last seen just now';
+  if(diff<3600000)return 'last seen '+Math.floor(diff/60000)+' min ago';
+  var today=new Date();today.setHours(0,0,0,0);
+  var yest=new Date(today);yest.setDate(yest.getDate()-1);
+  var t=d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  if(d>=today)return 'last seen today at '+t;
+  if(d>=yest)return 'last seen yesterday at '+t;
+  return 'last seen '+d.toLocaleDateString('en-US',{day:'numeric',month:'short'})+' at '+t;
+}
 
+// CONTACT LIST
+function updateCL(){
+  var cl=document.getElementById('cl'),contacts=[],pic2=Object.keys(pendGrpInv).length;
   if(isAdm){
-    const um={};
-    msgs.forEach(msg=>{
-      if(!ADMINS.includes(msg.deviceId)&&msg.serialId){
-        // Skip system/meta messages in contact list preview
-        if(msg.message&&msg.message.startsWith('__')) return;
-        if(!um[msg.serialId]) um[msg.serialId]={id:msg.serialId,type:'user',serialId:msg.serialId,name:msg.name,avatar:msg.avatar||'bb.png',lastMsg:msg.message,ts:msg.timestamp};
-        else if(new Date(msg.timestamp)>new Date(um[msg.serialId].ts)){um[msg.serialId].lastMsg=msg.message;um[msg.serialId].ts=msg.timestamp;}
+    var um={};
+    msgs.forEach(function(msg){
+      if(!ADMINS.includes(msg.deviceId)&&msg.serialId&&!(msg.message||'').startsWith('__')){
+        if(!um[msg.serialId])um[msg.serialId]={id:msg.serialId,type:'user',serialId:msg.serialId,name:msg.name,avatar:msg.avatar||'bb.png',lastMsg:msg.message,ts:msg.timestamp};
+        else if(new Date(msg.timestamp)>new Date(um[msg.serialId].ts)){um[msg.serialId].lastMsg=msg.message;um[msg.serialId].ts=msg.timestamp}
       }
     });
-    contacts.push(...Object.values(um));
-    const gm=msgs.filter(m=>m.targetSerial===GRP);
-    const lg=gm[gm.length-1];
-    contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:lg?lg.message:'Group chat',ts:lg?lg.timestamp:new Date().toISOString()});
-  } else {
-    // Pending requests at top
-    Object.values(pendIn).forEach(r=>{
-      contacts.push({id:r.serialId,type:'request',serialId:r.serialId,name:r.name,avatar:r.avatar||'bb.png',lastMsg:'Wants to chat with you',ts:new Date().toISOString(),pend:true});
-    });
-    // Admin support
-    const am=msgs.filter(m=>(ADMINS.includes(m.deviceId)||m.deviceId===did)&&(!m.targetSerial||m.targetSerial==='admin'));
-    const la=am[am.length-1];
+    contacts.push.apply(contacts,Object.values(um));
+    var gm=msgs.filter(function(m){return m.targetSerial===GRP&&!(m.message||'').startsWith('__')});
+    var lg=gm[gm.length-1];
+    var tp=lg?(lg.serialId===sid?'You: '+lg.message:lg.name+': '+lg.message):'Group chat';
+    contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:tp,ts:lg?lg.timestamp:new Date().toISOString()});
+  }else{
+    Object.values(pendIn).forEach(function(r){contacts.push({id:r.serialId,type:'request',serialId:r.serialId,name:r.name,avatar:r.avatar||'bb.png',lastMsg:'Wants to chat with you',ts:new Date().toISOString(),pend:true})});
+    if(pic2>0){var fi=Object.values(pendGrpInv)[0];contacts.push({id:'__grpinv__',type:'grpinv',name:'Group Invitations',avatar:fi&&fi.pic&&fi.pic!=='bb.png'?fi.pic:'bb.png',lastMsg:pic2+' pending invitation'+(pic2>1?'s':''),ts:new Date().toISOString(),pend:true})}
+    var am=msgs.filter(function(m){return(ADMINS.includes(m.deviceId)||m.deviceId===did)&&(!m.targetSerial||m.targetSerial==='admin')});
+    var la=am[am.length-1];
     contacts.push({id:'admin',type:'admin',name:'Admin Support',avatar:'bb.png',lastMsg:la?la.message:'Start chatting',ts:la?la.timestamp:new Date().toISOString()});
-    // Friends
-    Object.keys(ucon).forEach(s=>{
-      const pm=msgs.filter(m=>(m.serialId===sid&&m.targetSerial===s)||(m.serialId===s&&m.targetSerial===sid));
-      const lm=pm[pm.length-1];
+    Object.keys(ucon).forEach(function(s){
+      var pm=msgs.filter(function(m){return((m.serialId===sid&&m.targetSerial===s)||(m.serialId===s&&m.targetSerial===sid))&&!(m.message||'').startsWith('__')});
+      var lm=pm[pm.length-1];
       contacts.push({id:s,type:'user',serialId:s,name:ucon[s].name,avatar:ucon[s].avatar||'bb.png',lastMsg:lm?lm.message:'No messages yet',ts:lm?lm.timestamp:new Date().toISOString()});
     });
-    // Group (only for members)
     if(isGrpMem()){
-      const gm=msgs.filter(m=>m.targetSerial===GRP);
-      const lg=gm[gm.length-1];
-      contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:lg?lg.message:'Group chat',ts:lg?lg.timestamp:new Date().toISOString()});
+      var gm2=msgs.filter(function(m){return m.targetSerial===GRP&&!(m.message||'').startsWith('__')});
+      var lg2=gm2[gm2.length-1];
+      var tp2=lg2?(lg2.serialId===sid?'You: '+lg2.message:lg2.name+': '+lg2.message):'Group chat';
+      contacts.push({id:GRP,type:'group',name:'Tiyuhui Group',avatar:'bb.png',lastMsg:tp2,ts:lg2?lg2.timestamp:new Date().toISOString()});
     }
+    Object.values(myGroups).forEach(function(g){
+      var gm3=msgs.filter(function(m){return m.targetSerial===g.id&&!(m.message||'').startsWith('__')});
+      var lg3=gm3[gm3.length-1];
+      var gp=lg3?(lg3.serialId===sid?'You: '+lg3.message:lg3.name+': '+lg3.message):'Group chat';
+      contacts.push({id:g.id,type:'ggroup',name:g.name,avatar:g.pic||'bb.png',lastMsg:gp,ts:lg3?lg3.timestamp:new Date().toISOString(),isGrp:true});
+    });
   }
-
-  if(!contacts.length){cl.innerHTML='<div id="ldg">No contacts yet</div>';return;}
-  contacts.sort((a,b)=>{ if(a.pend&&!b.pend) return -1; if(!a.pend&&b.pend) return 1; return new Date(b.ts)-new Date(a.ts); });
+  if(!contacts.length){cl.innerHTML='<div id="ldg">No contacts yet</div>';return}
+  contacts.sort(function(a,b){if(a.pend&&!b.pend)return-1;if(!a.pend&&b.pend)return 1;return new Date(b.ts)-new Date(a.ts)});
   cl.innerHTML='';
-  contacts.forEach(c=>{
-    const div=document.createElement('div'); div.className='ci';
-    if(selC&&selC.id===c.id) div.classList.add('active');
-    if(c.pend) div.classList.add('req-pend');
-    const onl=c.type==='user'&&online[c.serialId]&&(Date.now()-online[c.serialId].lastSeen<60000);
-    const ser=c.serialId?`<span class="cser">#${c.serialId}</span>`:'';
-    const dotHtml=c.type==='user'?`<span class="dot ${onl?'on':'off'}"></span>`:'';
-
-    if(c.pend){
-      div.innerHTML=`<img src="${c.avatar||'bb.png'}" class="cav" onerror="this.src='bb.png'">
-        <div class="ci-info">
-          <div class="ci-name">${dotHtml}${escH(c.name)}${ser}</div>
-          <div class="ci-prev">Chat request</div>
-          <div class="rbtns">
-            <button class="bok" onclick="event.stopPropagation();acceptReq('${c.serialId}','${c.name.replace(/'/g,"\\'")}','${(c.avatar||'bb.png').replace(/'/g,"\\'")}')">Accept</button>
-            <button class="bno" onclick="event.stopPropagation();declineReq('${c.serialId}')">Decline</button>
-          </div>
-        </div>`;
-      div.onclick=()=>{};
-    } else {
-      div.innerHTML=`<img src="${c.avatar||'bb.png'}" class="cav" onerror="this.src='bb.png'">
-        <div class="ci-info">
-          <div class="ci-name">${dotHtml}${escH(c.name)}${ser}</div>
-          <div class="ci-prev">${c.lastMsg?escH(c.lastMsg.substring(0,40))+'...':''}</div>
-        </div>`;
-      div.onclick=()=>{ if(c.type==='group') openGrp(); else selectC(c.id,c.type); };
+  contacts.forEach(function(c){
+    var div=document.createElement('div');div.className='ci';
+    if(selC&&selC.id===c.id)div.classList.add('active');
+    if(c.pend)div.classList.add('req-pend');
+    var onl=c.type==='user'&&online[c.serialId]&&(Date.now()-online[c.serialId].lastSeen<60000);
+    var ser=c.serialId?'<span class="cser">#'+c.serialId+'</span>':'';
+    var dot=c.type==='user'?'<span class="dot '+(onl?'on':'off')+'"></span>':'';
+    var gb=c.isGrp?'<span class="grp-badge">Group</span>':'';
+    var prev=c.lastMsg?(c.lastMsg.length>44?c.lastMsg.substring(0,44)+'...':c.lastMsg):'';
+    if(c.pend&&c.type==='request'){
+      div.innerHTML='<img src="'+(c.avatar||'bb.png')+'" class="cav" onerror="this.src=\'bb.png\'">'
+        +'<div class="ci-info"><div class="ci-name">'+dot+escH(c.name)+ser+'</div><div class="ci-prev">Chat request</div>'
+        +'<div class="rbtns"><button class="bok" onclick="event.stopPropagation();acceptReq(\''+c.serialId+'\',\''+c.name.replace(/'/g,"\\'")+'\',\''+( c.avatar||'bb.png').replace(/'/g,"\\'")+'\')">Accept</button>'
+        +'<button class="bno" onclick="event.stopPropagation();declineReq(\''+c.serialId+'\')">Decline</button></div></div>';
+      div.onclick=function(){};
+    }else if(c.type==='grpinv'){
+      div.innerHTML='<img src="'+(c.avatar||'bb.png')+'" class="cav" onerror="this.src=\'bb.png\'">'
+        +'<div class="ci-info"><div class="ci-name">Group Invitations</div><div class="ci-prev">'+escH(c.lastMsg)+'</div></div>';
+      div.onclick=function(){openGrpInvModal()};
+    }else{
+      div.innerHTML='<img src="'+(c.avatar||'bb.png')+'" class="cav" onerror="this.src=\'bb.png\'">'
+        +'<div class="ci-info"><div class="ci-name">'+dot+escH(c.name)+ser+gb+'</div><div class="ci-prev">'+escH(prev)+'</div></div>';
+      if(c.type==='group')div.onclick=function(){openGrp()};
+      else if(c.type==='ggroup'){var cid=c.id;div.onclick=function(){selectC(cid,'ggroup')}}
+      else{var cid2=c.id,ctype=c.type;div.onclick=function(){selectC(cid2,ctype)}}
     }
     cl.appendChild(div);
   });
 }
 
-// ─── CHAT DISPLAY ─────────────────────────────────────────────
+// CHAT DISPLAY
 function selectC(id,type){
-  selC={id,type};
-  updateCCH(id,type); displayChat(id,type); updateCL();
-  if(window.innerWidth<=768){
-    document.getElementById('sidebar').classList.add('hm');
-    document.getElementById('chat-area').classList.remove('hm');
-  }
+  selC={id:id,type:type};updateCCH(id,type);displayChat(id,type);updateCL();
+  history.replaceState(null,'',location.pathname+'#'+id);
+  if(window.innerWidth<=768){document.getElementById('sidebar').classList.add('hm');document.getElementById('chat-area').classList.remove('hm')}
 }
-
 function updateCCH(id,type){
-  const h=document.getElementById('cchdr');
-  const av=document.getElementById('cc-av');
-  const nm=document.getElementById('cc-name');
-  const st=document.getElementById('cc-status');
-  h.classList.remove('hidden');
-  if(type==='admin'){av.src='bb.png';nm.textContent='Admin Support';st.textContent='Official support channel';}
-  else if(type==='group'){av.src='bb.png';nm.textContent='Tiyuhui Group';st.textContent='Group chat';}
+  var h=document.getElementById('cchdr'),av=document.getElementById('cc-av'),nm=document.getElementById('cc-name'),st=document.getElementById('cc-status'),ac=document.getElementById('cc-actions');
+  h.classList.remove('hidden');ac.innerHTML='';
+  if(type==='admin'){av.src='bb.png';nm.textContent='Admin Support';st.textContent='Official support channel'}
+  else if(type==='group'){av.src='bb.png';nm.textContent='Tiyuhui Group';st.textContent='Group chat'}
+  else if(type==='ggroup'){
+    var g=myGroups[id];av.src=(g&&g.pic)||'bb.png';nm.textContent=(g&&g.name)||'Group';
+    st.textContent=(g&&g.members)?g.members.length+' members':'Group chat';
+    var btn=document.createElement('button');btn.className='hbtn';btn.textContent='Info';
+    var gid=id;btn.onclick=function(){openGrpInfo(gid)};ac.appendChild(btn);
+  }
   else if(type==='user'&&ucon[id]){
-    const c=ucon[id]; av.src=c.avatar||'bb.png';
-    nm.textContent=c.name+' #'+id;
-    // Use 60s window for online check
-    const onl=online[id]&&(Date.now()-online[id].lastSeen<60000);
-    st.textContent=onl?'Online':'Offline';
-  } else if(isAdm){nm.textContent='User #'+id;st.textContent='';av.src='bb.png';}
-  av.onerror=()=>av.src='bb.png';
+    var c=ucon[id];av.src=c.avatar||'bb.png';nm.textContent=c.name+' #'+id;
+    var onl=online[id]&&(Date.now()-online[id].lastSeen<60000);
+    if(onl){st.textContent='Online'}else{var ls=userLastSeen[id];st.textContent=ls&&ls.lastSeen?fmtLastSeen(ls.lastSeen):'Offline'}
+  }
+  else if(isAdm){
+    nm.textContent='User #'+id;av.src='bb.png';
+    var onl2=online[id]&&(Date.now()-online[id].lastSeen<60000);
+    if(onl2){st.textContent='Online'}else{var ls2=userLastSeen[id];st.textContent=ls2&&ls2.lastSeen?fmtLastSeen(ls2.lastSeen):''}
+  }
+  av.onerror=function(){av.src='bb.png'};
 }
-
 function displayChat(cId,cType){
-  const box=document.getElementById('box'); box.innerHTML='';
-  let f;
-  if(cType==='group') f=msgs.filter(m=>m.targetSerial===GRP);
-  else if(isAdm&&cType==='user') f=msgs.filter(m=>(m.serialId===cId&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===cId)));
-  else if(!isAdm&&cType==='admin') f=msgs.filter(m=>(m.serialId===sid&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===sid)));
-  else if(cType==='user') f=msgs.filter(m=>(m.serialId===sid&&m.targetSerial===cId)||(m.serialId===cId&&m.targetSerial===sid));
-  else{box.innerHTML='<div class="empty">Select a contact to start chatting</div>';return;}
-  // Filter out system meta-messages
-  f=(f||[]).filter(m=>!m.message.startsWith('__'));
-  if(!f.length) box.innerHTML='<div class="empty">No messages yet. Start chatting!</div>';
-  else f.forEach(m=>appendMsg(m.name,m.message,m.timestamp,m.pic,m.serialId,m.deviceId,m.avatar));
+  var box=document.getElementById('box');box.innerHTML='';var f;
+  if(cType==='group')f=msgs.filter(function(m){return m.targetSerial===GRP});
+  else if(cType==='ggroup')f=msgs.filter(function(m){return m.targetSerial===cId});
+  else if(isAdm&&cType==='user')f=msgs.filter(function(m){return(m.serialId===cId&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===cId))});
+  else if(!isAdm&&cType==='admin')f=msgs.filter(function(m){return(m.serialId===sid&&(!m.targetSerial||m.targetSerial==='admin'))||(ADMINS.includes(m.deviceId)&&(!m.targetSerial||m.targetSerial===sid))});
+  else if(cType==='user')f=msgs.filter(function(m){return(m.serialId===sid&&m.targetSerial===cId)||(m.serialId===cId&&m.targetSerial===sid)});
+  else{box.innerHTML='<div class="empty">Select a contact to start chatting</div>';return}
+  f=(f||[]).filter(function(m){return!(m.message||'').startsWith('__')});
+  if(!f.length)box.innerHTML='<div class="empty">No messages yet. Start chatting!</div>';
+  else f.forEach(function(m){appendMsg(m.name,m.message,m.timestamp,m.pic,m.serialId,m.deviceId,m.avatar)});
   box.scrollTop=box.scrollHeight;
 }
-
 function appendMsg(name,msg,ts,pic,mSer,mDev,avatar){
-  const box=document.getElementById('box');
-  const wrap=document.createElement('div'); wrap.className='mw';
-  const mine=isAdm?(ADMINS.includes(mDev)&&mDev===did):(mSer===sid);
+  var box=document.getElementById('box'),wrap=document.createElement('div');wrap.className='mw';
+  var mine=isAdm?(ADMINS.includes(mDev)&&mDev===did):(mSer===sid);
   wrap.classList.add(mine?'me':'them');
-
-  // FIX: always show avatar — mine uses uav, others use the message's avatar field
-  const av=document.createElement('img'); av.className='mav';
-  av.src=mine ? uav : (avatar&&avatar!=='bb.png' ? avatar : 'bb.png');
-  av.onerror=()=>av.src='bb.png';
-
-  const div=document.createElement('div'); div.className='c';
-  const time=ts?new Date(ts).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}):new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  div.innerHTML=
-    (!mine?`<div class="n">${escH(name)}${mSer?' #'+mSer:''}</div>`:'')+
-    (msg?`<div class="m">${renderTanag(escH(msg))}</div>`:'')+
-    (pic?`<img src="${pic}" style="max-width:185px;border-radius:6px;margin-top:4px;cursor:pointer" onclick="window.open('${pic}')">`:'')+
-    `<div class="t">${time}</div>`;
-  wrap.appendChild(av); wrap.appendChild(div); box.appendChild(wrap);
+  var av=document.createElement('img');av.className='mav';
+  av.src=mine?uav:(avatar&&avatar!=='bb.png'?avatar:'bb.png');
+  av.onerror=function(){av.src='bb.png'};
+  var div=document.createElement('div');div.className='c';
+  var time=ts?new Date(ts).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}):new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  div.innerHTML=(!mine?'<div class="n">'+escH(name)+(mSer?' #'+mSer:'')+'</div>':'')
+    +(msg?'<div class="m">'+renderTanag(escH(msg))+'</div>':'')
+    +(pic?'<img src="'+pic+'" style="max-width:185px;border-radius:6px;margin-top:4px;cursor:pointer" onclick="window.open(\''+pic+'\')">':'')
+    +'<div class="t">'+time+'</div>';
+  wrap.appendChild(av);wrap.appendChild(div);box.appendChild(wrap);
 }
 
-function escH(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
-
-// ─── SEND ─────────────────────────────────────────────────────
+// SEND
 function send(){
-  if(sending) return;
-  if(!uname){alert('Please set your name first');return;}
-  if(!selC){alert('Please select a contact first');return;}
-
-  let msgText;
-  if(tMode){
-    if(!tbuf.length) return;
-    msgText=tbufToToken();
-  } else {
-    msgText=document.getElementById('m').value.trim();
-    if(!msgText) return;
-    if(msgText.toLowerCase()==='tanag.lekhi'){document.getElementById('m').value='';openGrp();return;}
-  }
-
+  if(sending)return;if(!uname){alert('Please set your name first');return}if(!selC){alert('Please select a contact first');return}
+  var msgText;
+  if(tMode){if(!tbuf.length)return;msgText=tbufToToken()}
+  else{msgText=document.getElementById('m').value.trim();if(!msgText)return;if(msgText.toLowerCase()==='tanag.lekhi'){document.getElementById('m').value='';openGrp();return}}
   sending=true;
-  const ts=selC.type==='admin'?'admin':selC.type==='group'?GRP:selC.id;
-  const payload={name:uname,message:msgText,deviceId:did,serialId:sid,avatar:uav,targetSerial:ts};
-
+  var ts;
+  if(selC.type==='admin')ts='admin';else if(selC.type==='group')ts=GRP;else if(selC.type==='ggroup')ts=selC.id;else ts=selC.id;
+  var payload={name:uname,message:msgText,deviceId:did,serialId:sid,avatar:uav,targetSerial:ts};
   appendMsg(uname,msgText,new Date().toISOString(),'',sid,did,uav);
-  const box=document.getElementById('box'); box.scrollTop=box.scrollHeight;
-
+  var box=document.getElementById('box');box.scrollTop=box.scrollHeight;
   fetch(API,{method:'POST',body:JSON.stringify(payload)})
-  .then(r=>r.json()).then(res=>{
-    if(res.status==='success'){
-      if(tMode) tClear(); else document.getElementById('m').value='';
-      loadMsgs(true);
-    } else { alert('Failed to send: '+(res.message||'')); box.lastChild&&box.lastChild.remove(); }
+  .then(function(r){return r.json()}).then(function(res){
+    if(res.status==='success'){if(tMode)tClear();else document.getElementById('m').value='';loadMsgs(true)}
+    else{alert('Failed to send: '+(res.message||''));box.lastChild&&box.lastChild.remove()}
     sending=false;
-  }).catch(err=>{ console.error(err); alert('Failed to send.'); box.lastChild&&box.lastChild.remove(); sending=false; });
+  }).catch(function(err){console.error(err);alert('Failed to send.');box.lastChild&&box.lastChild.remove();sending=false});
 }
 
-// ─── LOAD MESSAGES ────────────────────────────────────────────
-function loadMsgs(auto=false){
+// LOAD MESSAGES
+function loadMsgs(auto){
   fetch(API+'?deviceId='+did+'&serialId='+sid+'&t='+Date.now())
-  .then(r=>{ if(!r.ok) throw 0; return r.json(); })
-  .then(d=>{
-    if(!d||!Array.isArray(d.comments)){
-      msgs=[]; updateCL();
-      if(!selC) document.getElementById('box').innerHTML='<div class="empty">No messages yet.</div>';
-      return;
-    }
+  .then(function(r){if(!r.ok)throw 0;return r.json()})
+  .then(function(d){
+    if(!d||!Array.isArray(d.comments)){msgs=[];updateCL();if(!selC)document.getElementById('box').innerHTML='<div class="empty">No messages yet.</div>';return}
     msgs=d.comments;
-
-    // Update online users — use 60s window
-    if(d.onlineUsers) online=d.onlineUsers;
-
-    msgs.forEach(m=>{
-      if(m.serialId&&ucon[m.serialId]){
-        ucon[m.serialId].name=m.name;
-        if(m.avatar&&m.avatar!=='bb.png') ucon[m.serialId].avatar=m.avatar;
-      }
-    });
+    if(d.onlineUsers)online=d.onlineUsers;
+    if(d.userLastSeen)userLastSeen=d.userLastSeen;
+    msgs.forEach(function(m){if(m.serialId&&ucon[m.serialId]){ucon[m.serialId].name=m.name;if(m.avatar&&m.avatar!=='bb.png')ucon[m.serialId].avatar=m.avatar}});
     localStorage.setItem('chatContacts',JSON.stringify(ucon));
-
-    procReqs(msgs);
-    procTanag(msgs);
-    updateCL();
-
-    if(selC) displayChat(selC.id,selC.type);
-    else if(!isAdm&&!Object.keys(ucon).length&&!Object.keys(pendIn).length) selectC('admin','admin');
-  }).catch(err=>{ console.error(err); if(!auto) document.getElementById('box').innerHTML='<div id="ldg">Failed to load. Refresh.</div>'; });
+    procReqs(msgs);procTanag(msgs);procGrpInvites(msgs);updateCL();
+    if(selC)displayChat(selC.id,selC.type);
+    else if(!isAdm&&!Object.keys(ucon).length&&!Object.keys(pendIn).length)selectC('admin','admin');
+  }).catch(function(err){console.error(err);if(!auto)document.getElementById('box').innerHTML='<div id="ldg">Failed to load. Refresh.</div>'});
 }
 
-// ─── HEARTBEAT ────────────────────────────────────────────────
-// Send heartbeat every 20s; server caches for 60s.
-// This means online = seen within last 60s.
-function hb(){
-  if(!uname||!sid) return;
-  fetch(API,{method:'POST',body:JSON.stringify({heartbeat:true,serialId:sid,name:uname,avatar:uav})}).catch(()=>{});
-}
-setInterval(()=>{ if(uname) hb(); }, 20000);
+// HEARTBEAT
+function hb(){if(!uname||!sid)return;fetch(API,{method:'POST',body:JSON.stringify({heartbeat:true,serialId:sid,name:uname,avatar:uav})}).catch(function(){})}
+setInterval(function(){if(uname)hb()},20000);
+setInterval(function(){if(!sending)loadMsgs(true)},8000);
 
-// Poll every 8s (no more 5s to reduce load)
-setInterval(()=>{ if(!sending) loadMsgs(true); }, 8000);
+function showSidebar(){if(window.innerWidth<=768){document.getElementById('sidebar').classList.remove('hm');document.getElementById('chat-area').classList.add('hm')}}
 
-function showSidebar(){
-  if(window.innerWidth<=768){
-    document.getElementById('sidebar').classList.remove('hm');
-    document.getElementById('chat-area').classList.add('hm');
-  }
-}
-
-// ─── EVENTS ───────────────────────────────────────────────────
-document.getElementById('m').addEventListener('keypress',e=>{ if(e.key==='Enter') send(); });
-document.getElementById('sn').addEventListener('keypress',e=>{ if(e.key==='Enter') saveName(); });
-document.getElementById('helpmod').addEventListener('click',e=>{ if(e.target.id==='helpmod') closeHelp(); });
-document.getElementById('epmod').addEventListener('click',e=>{ if(e.target.id==='epmod') closeEP(); });
-document.getElementById('grpmod').addEventListener('click',e=>{ if(e.target.id==='grpmod') closeGrp(); });
-document.getElementById('tlmod').addEventListener('click',e=>{ if(e.target.id==='tlmod') closeTL(); });
+// EVENTS
+document.getElementById('m').addEventListener('keypress',function(e){if(e.key==='Enter')send()});
+document.getElementById('sn').addEventListener('keypress',function(e){if(e.key==='Enter')saveName()});
+document.getElementById('helpmod').addEventListener('click',function(e){if(e.target.id==='helpmod')closeHelp()});
+document.getElementById('epmod').addEventListener('click',function(e){if(e.target.id==='epmod')closeEP()});
+document.getElementById('grpmod').addEventListener('click',function(e){if(e.target.id==='grpmod')closeGrp()});
+document.getElementById('tlmod').addEventListener('click',function(e){if(e.target.id==='tlmod')closeTL()});
+document.getElementById('ngmod').addEventListener('click',function(e){if(e.target.id==='ngmod')closeNG()});
+document.getElementById('ginvmod').addEventListener('click',function(e){if(e.target.id==='ginvmod')document.getElementById('ginvmod').classList.add('hidden')});
+document.getElementById('ginfomod').addEventListener('click',function(e){if(e.target.id==='ginfomod')document.getElementById('ginfomod').classList.add('hidden')});
 
 init();
 loadMsgs();
